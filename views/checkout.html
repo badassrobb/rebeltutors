@@ -111,12 +111,12 @@
                   <label>Select Hours:</label>
                   <select class="form-control" ng-change="updatePricing()" ng-model="item.hourBundle">
                     <option value="1">${{ item.rate }}/hr (1 hour) ${{ item.rate }}</option>
-                    <option value="2">${{ item.rate - (item.applyDiscount * 5) }}/hr (4 hour) ${{ (item.rate - (item.applyDiscount * 5)) * 4 }}</option>
-                    <option value="3">${{ item.rate - (item.applyDiscount * 10) }}/hr (8 hour) ${{ (item.rate - (item.applyDiscount * 10)) * 8 }}</option>
-                    <option value="4">${{ item.rate - (item.applyDiscount * 15)}}/hr (16 hour) ${{ (item.rate - (item.applyDiscount * 15)) * 16 }}</option>
-                    <option value="5">${{ item.rate - (item.applyDiscount * 20)}}/hr (24 hour) ${{ (item.rate - (item.applyDiscount * 20)) * 24 }}</option>
-                    <option value="6">${{ item.rate - (item.applyDiscount * 5)}}/hr (16 hour Guaranteed Pass) ${{ (item.rate - (item.applyDiscount * 5)) * 16 }}</option>
-                    <option value="7">${{ item.rate - (item.applyDiscount * 5)}}/hr (24 hour Guaranteed A or B) ${{ (item.rate - (item.applyDiscount * 5)) * 24 }}</option>
+                    <option value="2">${{ item.rate - (item.applyDiscount * 5) }}/hr (4 hour) ${{ (item.rate - (item.applyDiscount * 15)) * 4 }}</option>
+                    <option value="3">${{ item.rate - (item.applyDiscount * 10) }}/hr (8 hour) ${{ (item.rate - (item.applyDiscount * 20)) * 8 }}</option>
+                    <option value="4">${{ item.rate - (item.applyDiscount * 15)}}/hr (16 hour) ${{ (item.rate - (item.applyDiscount * 25)) * 16 }}</option>
+                    <option value="5">${{ item.rate - (item.applyDiscount * 20)}}/hr (24 hour) ${{ (item.rate - (item.applyDiscount * 30)) * 24 }}</option>
+                    <option value="6">${{ item.rate - (item.applyDiscount * 5)}}/hr (16 hour Guaranteed Pass) ${{ (item.rate - (item.applyDiscount * 25)) * 16 }}</option>
+                    <option value="7">${{ item.rate - (item.applyDiscount * 5)}}/hr (24 hour Guaranteed A or B) ${{ (item.rate - (item.applyDiscount * 25)) * 24 }}</option>
                   </select>
                 </div>
                 <div class=""  ng-hide="!item.book">
