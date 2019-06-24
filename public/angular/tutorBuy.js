@@ -24,7 +24,7 @@ function mainController($scope, $window, $http, $cookies, $cookieStore){
     var cartItem = {
       book: true,
       tutor: "Book",
-      price: 69.95,
+      price: 19.95,
       // price: 1.00,
       subjectCategory: "",
       class: ""
@@ -44,7 +44,7 @@ function mainController($scope, $window, $http, $cookies, $cookieStore){
       hourBundle: hourPackage,
       subjectCategory: "",
       class: "",
-      rate: 65,
+      rate: 75,
       applyDiscount: 1
     };
     // Push purchase to scope
@@ -79,17 +79,17 @@ function mainController($scope, $window, $http, $cookies, $cookieStore){
       if (item.hourBundle == "1") {
         $scope.total += item.rate;
       } else if (item.hourBundle == "2") {
-        $scope.total += (item.rate - 5) * 4;
+        $scope.total += (item.rate - 10) * 4;
       } else if (item.hourBundle == "3") {
-        $scope.total += (item.rate - 10) * 8;
+        $scope.total += (item.rate - 15) * 8;
       } else if (item.hourBundle == "4") {
-        $scope.total += (item.rate - 15) * 16;
+        $scope.total += (item.rate - 20) * 16;
       } else if (item.hourBundle == "5") {
-        $scope.total += (item.rate - 20) * 24;
+        $scope.total += (item.rate - 25) * 24;
       } else if (item.hourBundle == "6") {
-        $scope.total += (item.rate - 5) * 16;
+        $scope.total += (item.rate - 15) * 16;
       } else if (item.hourBundle == "7") {
-        $scope.total += (item.rate - 5) * 24;
+        $scope.total += (item.rate - 15) * 24;
       }
     });
     // Set Cookie of purhcase
