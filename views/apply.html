@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutors">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Application questions</title>
+    <link rel="icon" href="./public/favicon.ico">
+    <!-- Facebook Sharing Info -->
+    <meta property="og:url"                content="https://badasstutors.com/apply" />
+    <meta property="og:title"              content="Badass Tutors - Apply to be a tutor" />
+    <meta property="og:description"        content="Apply to be a tutor today! Fill out and submit the form below and we will begin the application process." />
+    <meta property="og:image"              content="https://badasstutors.com/public/images/badass-donkey.jpg" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./public/stylesheets/style.css">
+    <link rel="stylesheet" href="./public/stylesheets/apply.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+
+    <!-- City Location API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNv4_E0ALuc1wUcPZLYkWSZuyfBfuu0I&libraries=places"></script>
+
+    <script src="/public/javascripts/angular.min.js"></script>
+
+
+    <!-- CROPPIE JS JQUERY STUFF -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.js"></script>
+    <script type="text/javascript" src="/public/javascripts/croppieCustom.js"></script>
+
+    <script src="/public/javascripts/angular-cookies.min.js"></script>
+    <script src="/public/angular/tutorApply.js"></script>
+  </head>
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/Book">BOOK</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="https://blog.badasstutors.com">BLOG</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Application -->
+    <section class="primary-section text-center">
+        <div class="container top-container">
+          <div class="row">
+            <h1>Apply to be a tutor today!</h1>
+            <p>Fill out and submit the form below and we will begin the application process.</p>
+          </div>
+          <h2>Contact Info</h2>
+          <div class="row">
+            <hr>
+            <div class="col-sm-8 col-sm-offset-2 text-left">
+              <!-- name INPUT -->
+              <h3>First Name</h3>
+              <div class="input-group-lg">
+                <input ng-model="formData.firstName" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+              </div>
+              <h3>Last Name</h3>
+              <div class="input-group-lg">
+                <input ng-model="formData.lastName" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+              </div>
+              <!-- nickname INPUT -->
+              <h3>Fun Nickname</h3>
+              <p>May not contain your first or last name (think superhero-ish, The Flash, Ninja, etc).</p>
+              <div class="input-group-lg">
+                <input ng-model="formData.nickname" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+              </div>
+              <!-- phone INPUT -->
+              <h3>Phone Number</h3>
+              <p>Must be able to receive texts (SMS).</p>
+              <div class="input-group-lg">
+                <input ng-model="formData.contact.phone" type="text" class="form-control " placeholder="555-555-5555" aria-describedby="sizing-addon1">
+              </div>
+              <!-- email INPUT -->
+              <h3>E-mail</h3>
+              <p>Non-school emails only please (gmail, yahoo, hotmail, etc). <br>No "edu" emails, schools tend to block attachments.</p>
+              <div class="input-group-lg">
+                <input ng-model="formData.contact.email" type="text" class="form-control " placeholder="bad@ass.com" aria-describedby="sizing-addon1">
+              </div>
+              <!-- Residence Full Address -->
+              <div class="input-group-lg">
+                <h2>Residential Address</h2>
+                <p>Your address will stay private. It will not be shared. Zip code is for in-person tutor searches by students and should be from where you travel to meet students. You can be an online tutor only but all tutors can tutor online if they wish to.</p>
+                <input type="text" class="form-control" id="googlePlacesSearch" autocomplete="on">
+              </div>
+              <!-- Distance willing to drive -->
+              <h2>Maximum Travel Distance</h2>
+              <p>Max distance tutor is willing to commute (one-way in miles). This is important for matching in-person tutor searches.</p>
+              <p>If you want to only tutor online, select "online tutor." All tutors can tutor both in-person and online.</p>
+              <div class="input-group-lg">
+                <select ng-model="formData.location.serviceDistance" class="form-control small-field" name="">
+                  <option value="0">Online Tutor</option>
+                  <option value="5">5 Miles</option>
+                  <option value="10">10 Miles</option>
+                  <option value="15">15 Miles</option>
+                  <option value="20">20 Miles</option>
+                  <option value="25">25 Miles</option>
+                  <option value="30">30 Miles</option>
+                  <option value="35">35 Miles</option>
+                  <option value="40">40 Miles</option>
+                </select>
+              </div>
+              <!-- pay INPUT -->
+              <div class="input-group-lg">
+                <h2>Hourly Pay</h2>
+		            <h4>Our rates are based on your hourly rate. You can only charge one rate for all classes. We charge more than your rate and publish that rate on your profile. To see what your profile shows 
+					as the student's rate just look at your profile page. You can change your at any time and our rates on your profile change, too. Student's can buy a
+					plan right off your profile. Often, tutors rates are not the same as on our generic "Buy" page. Sometimes tutors are cheaper, sometimes more, than our main Buy page.
+					We offer advance purchase discounts to students. The more hours they buy at once the cheaper our rates will be. Your rate stays the same!</h4><br>
+                <h4>Tutoring charge rate: <span class="green-highlight">${{ (formData.payRate * 2)-15  }}-{{ (formData.payRate * 2) +5 }} per hour</span></h4>
+                <h4>Your pay rate: </h4>
+                <select ng-model="formData.payRate" class="form-control small-field" name="">
+                  <option value="20">$20 per hour</option>
+                  <option value="25">$25 per hour</option>
+                  <option value="30">$30 per hour</option>
+                  <option value="35">$35 per hour</option>
+                  <option value="40">$40 per hour</option>
+                  <option value="45">$45 per hour</option>
+                  <option value="50">$50 per hour</option>
+                  <option value="55">$55 per hour</option>
+                  <option value="60">$60 per hour</option>
+                  <option value="65">$65 per hour</option>
+                  <option value="70">$70 per hour</option>
+                  <option value="75">$75 per hour</option>
+                  <option value="80">$80 per hour</option>
+                  <option value="85">$85 per hour</option>
+                  <option value="90">$90 per hour</option>
+                  <option value="95">$95 per hour</option>
+                  <option value="100">$100 per hour</option>
+                  <option value="110">$110 per hour</option>
+                  <option value="120">$120 per hour</option>
+                  <option value="130">$130 per hour</option>
+                  <option value="140">$140 per hour</option>
+                  <option value="150">$150 per hour</option>
+                  <option value="160">$160 per hour</option>
+                  <option value="170">$170 per hour</option>
+                  <option value="180">$180 per hour</option>
+                  <option value="190">$190 per hour</option>
+                  <option value="200">$200 per hour</option>
+                </select>
+              </div>
+              <!-- Bio INPUT -->
+              <h2>Full Bio</h2>
+              <h4>This appears only in the detail tutor page, not on your search results preview.</h4>
+              <textarea ng-model="formData.bio" class="form-control input-thick" rows="6" placeholder=""></textarea>
+              <h2>Bio Preview</h2>
+              <h4>This appears only in the search results preview. </h4>
+              <textarea ng-model="formData.shortBio" class="form-control input-thick" rows="2" placeholder=""></textarea>
+              <!-- education INPUT -->
+              <div class="input-group-lg">
+                <h2>Education</h2>
+                <input ng-model="formData.education" type="text" class="form-control " placeholder="BS Chemistry Cal Poly 2020" aria-describedby="sizing-addon1">
+              </div>
+              <!-- schedule INPUT -->
+              <h2>Schedule</h2>
+              <h4>Tutoring availability (list available days and times)</h4>
+              <textarea ng-model="formData.schedule" class="form-control input-thick" rows="6" placeholder="Monday-Friday: 10am-8pm"></textarea>
+              <hr>
+              <!-- PHOTO * START -->
+              <form class="text-center row-thick" id="form1" runat="server">
+                <h2>Tutor Photo Upload</h2>
+                <!-- JQUERY CROPPIE -->
+                <div class="" id="photoUploadDiv">
+                  <div class="row">
+                    <input type="file" id="upload" value="Choose a file" accept="image/*" class="btn btn-info center-block"/>
+                    <img src="" id="upload-demo" alt="">
+                  </div>
+                  <div class="row">
+                    <button class="btn btn-danger btn-lg upload-result" ng-click="savePhoto()">SAVE PHOTO</button>
+                    <h2 ng-hide="photoSaved" class="error-message">Photo not saved!</h2>
+                    <h2 ng-hide="!photoSaved">Photo saved!</h2>
+                  </div>
+                </div>
+
+                <div id="photoExistingDiv">
+                  <div class="row">
+                      <img id="tutorImagePreview" class="img-responsive center-block" width="300px" height="300px" alt="">
+                  </div>
+                  <div class="row">
+                      <button class="btn btn-danger btn-lg" id="editPhotoButton" ng-click="editPhoto()">Edit Photo</button>
+                      <br>
+                      <br>
+                      <p ng-hide="photoUpdateRequired || hideUpdateModal">Photo ready for upload.</p>
+                  </div>
+                </div>
+                <!-- JQUERY CROPPIE -->
+              </form>
+              <!-- PHOTO * END -->
+              <hr>
+              <!-- Subjects INPUT -->
+              <div class="panel panel-default">
+                <div class="panel-heading" name="subjectHeading">
+                  <h2 class="">Subjects, Classes and Hobbies</h2>
+                </div>
+                <div class="panel-body">
+                  <div class="row row-gray" ng-repeat="subject in formData.subjects" ng-init="subjectIndex=$index">
+                    <!-- Subject Category Input -->
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <h4> <b>Subject:</b> </h4>
+                        <label for="sel1">Select subject:</label>
+                        <select class="form-control" ng-options="item as item for item in subjectCategories" ng-model="subject.subjectCategory" ng-change="subjectChange(subject.subjectCategory, subjectIndex)">
+                        </select>
+                      </div>
+                      <div class="input-group-lg">
+                        <p ng-hide="(subject.subjectCategory!='Add Custom Subject')">Enter Subject:</p>
+                        <input class="capitalize" ng-hide="(subject.subjectCategory!='Add Custom Subject')" ng-model="subject.customSubject" type="text" class="form-control " aria-describedby="sizing-addon1">
+                      </div>
+                      <br>
+                      <button type="button" class="btn btn-danger" ng-click="removeSubject($index)">Remove Subject</button>
+                    </div>
+                    <!-- Test fields for classes -->
+                    <div class="col-md-8">
+                      <p>Enter each class name or  separated by a comma and space. Try to keep class names generic as possible for better search results.</p>
+                      <h4> <b>Classes or Hobby Description:</b> </h4>
+                      <textarea ng-model="subject.classes" class="form-control" rows="6" placeholder="class 1, class 2, class 3"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4">
+                      <!-- Add Subject Button -->
+                      <button type="button" class="btn btn-danger btn-block btn-lg btn-bad" ng-click="addSubject()">Add Subject</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End * Subjects INPUT -->
+              <!-- Comments -->
+              <h2>Other Classes or Comments</h2>
+              <h4>Class not listed? Hobbies? Interests you have expertise? Fishing, tattooing, glass blowing? </h4>
+              <textarea ng-model="formData.comments" class="form-control" rows="2" placeholder=""></textarea>
+            </div>
+            <!-- End col div -->
+          </div>
+          <div class="row text-center">
+            <hr>
+            <h2>Terms</h2>
+            <div class="col-md-10 col-md-offset-1 text-left">
+              <h4>Required:</h4>
+              <p><span><input type="checkbox" ng-model="checkbox1"> </span>  I am legally able to work in the US*</p>
+              <p><span><input type="checkbox" ng-model="checkbox2"> </span>  I understand that I am an Independent Contractor and NOT an Employee (W9 and 1099 forms for taxes)*</p>
+              <p><span><input type="checkbox" ng-model="checkbox3"> </span>  Prior to first payment I will submit my Social Security Number by phone or mail*</p>
+              <h4>Optional:</h4>
+              <p><span><input type="checkbox" ng-model="formData.partyHost"> </span>  I am interested in a Party Host or Promoter position (contact us for details 805-806-0305) </p>
+              <p><span><input type="checkbox" ng-model="formData.onlineTutor"> </span>  I am willing to be an online tutor. </p>
+            </div>
+          </div>
+          <hr>
+          <div class="col-sm-6 col-sm-offset-3 text-center">
+            <p class="error-message text-left">{{errorMessage}}</p>
+            <button class="btn btn-lg btn-block btn-bad" type="button" name="button" ng-click="submit()">Submit</button>
+
+          </div>
+        </div>
+    </section>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 moble-footer">
+          <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+        </div>
+        <div class="col-sm-6 text-right moble-footer">
+            <a href="/schools/calpoly" class="footer-link">Cal Poly</a> | <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use</a> | <a href="/tutor/login" class="footer-link">Tutor Login</a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- LOADING MODAL -->
+    <div class="modal" id="loadingModal" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" ng-class="loadingClass">
+      <div class="modal-dialog loading-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center loading-modal">
+            <div class="row">
+              <br>
+              <h1>Uploading...</h1>
+              <h2>Kick-back and have a deep breath.</h2>
+              <img src="/public/images/np_hammock.png" class="img-responsive center-block" alt="">
+            </div>
+            <div class="row">
+              <div class="col-xs-12  loading-center">
+                <div class="loader center-block"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-104310445-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

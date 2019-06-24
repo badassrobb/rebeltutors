@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutorsCheckout">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>subjects</title>
+    <link rel="icon" href="./public/favicon.ico">\
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/subjects.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script>
+    <script src="/public/javascripts/angular-cookies.min.js"></script>
+    <script src="/public/angular/tutorBuy.js"></script>
+  </head>
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/Book">BOOK</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- How to Get Started -->
+    <section class="primary-section text-center">
+        <div class="container top-container">
+
+          <div class="row">
+            <h1>Subjects</h1>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 col-sm-offset-2 text-left">
+              <li>
+                <a href="/subjects/anthropology" class="subject-link">anthropology</a>
+              </li>
+              <li>
+                <a href="/subjects/art" class="subject-link">art</a>
+              </li>
+              <li>
+                <a href="/subjects/astronomy-and-astrophysics" class="subject-link">astronomy and astrophysics</a>
+              </li>
+              <li>
+                <a href="/subjects/biology" class="subject-link">biology</a>
+              </li>
+              <li>
+                <a href="/subjects/business" class="subject-link">business</a>
+              </li>
+              <li>
+                <a href="/subjects/chemistry" class="subject-link">chemistry</a>
+              </li>
+              <li>
+                <a href="/subjects/civil-engineering" class="subject-link">civil engineering</a>
+              </li>
+              <li>
+                <a href="/subjects/communication-studies" class="subject-link">communication studies</a>
+              </li>
+              <li>
+                <a href="/subjects/computer-science" class="subject-link">computer science</a>
+              </li>
+              <li>
+                <a href="/subjects/electrical-engineering" class="subject-link">electrical engineering</a>
+              </li>
+              <li>
+                <a href="/subjects/english" class="subject-link">english</a>
+              </li>
+              <li>
+                <a href="/subjects/food-science-and-nutrition" class="subject-link">food science and nutrition</a>
+              </li>
+            </div>
+            <div class="col-sm-4 text-left">
+              <li>
+                <a href="/subjects/history" class="subject-link">history</a>
+              </li>
+              <li>
+                <a href="/subjects/materials-engineering" class="subject-link">materials engineering</a>
+              </li>
+              <li>
+                <a href="/subjects/mathematics" class="subject-link">mathematics</a>
+              </li>
+              <li>
+                <a href="/subjects/mechanical-engineering" class="subject-link">mechanical engineering</a>
+              </li>
+              <li>
+                <a href="/subjects/philosophy" class="subject-link">philosophy</a>
+              </li>
+              <li>
+                <a href="/subjects/physics" class="subject-link">physics</a>
+              </li>
+              <li>
+                <a href="/subjects/psychology" class="subject-link">psychology</a>
+              </li>
+              <li>
+                <a href="/subjects/spanish" class="subject-link">spanish</a>
+              </li>
+              <li>
+                <a href="/subjects/sports" class="subject-link">sports</a>
+              </li>
+              <li>
+                <a href="/subjects/statistics" class="subject-link">statistics</a>
+              </li>
+              <li>
+                <a href="/subjects/test-prep" class="subject-link">test prep</a>
+              </li>
+              <li>
+                <a href="/subjects/world-languages-and-cultures" class="subject-link">world languages and cultures</a>
+              </li>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 moble-footer">
+          <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+        </div>
+        <div class="col-sm-6 text-right moble-footer">
+            <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use</a>
+        </div>
+      </div>
+      <!-- Schools -->
+      <div class="row ">
+        <div class="col-sm-12 text-center">
+            <a href="/schools/calpoly-pomona" class="footer-link">Cal Poly Pomona</a> |
+            <a href="/schools/calpoly" class="footer-link">Cal Poly SLO</a> |
+            <a href="/schools/CSUB" class="footer-link">CSUB</a> |
+            <a href="/schools/CSUC" class="footer-link">CSUC</a> |
+            <a href="/schools/CSUCI" class="footer-link">CSUCI</a> |
+            <a href="/schools/CSUDH" class="footer-link">CSUDH</a> |
+            <a href="/schools/CSUEB" class="footer-link">CSUEB</a> |
+            <a href="/schools/CSUFRESNO" class="footer-link">CSU FRESNO</a> |
+            <a href="/schools/CSUFULLERTON" class="footer-link">CSU FULLERTON</a> |
+            <a href="/schools/CSULA" class="footer-link">CSULA</a> |
+            <a href="/schools/CSULB" class="footer-link">CSULB</a> |
+            <a href="/schools/CSUMB" class="footer-link">CSUMB</a> |
+            <a href="/schools/CSUN" class="footer-link">CSUN</a> |
+            <a href="/schools/CSUS" class="footer-link">CSUS</a> |
+            <a href="/schools/CSUSB" class="footer-link">CSUSB</a> |
+            <a href="/schools/CSUSM" class="footer-link">CSUSM</a> |
+            <a href="/schools/HSU" class="footer-link">HSU</a> |
+            <a href="/schools/SBCC" class="footer-link">SBCC</a> |
+            <a href="/schools/SDSU" class="footer-link">SDSU</a> |
+            <a href="/schools/SSU" class="footer-link">SSU</a> |
+            <a href="/schools/STANISLAUSSTATE" class="footer-link">STANISLAUS STATE</a> |
+            <a href="/schools/UCB" class="footer-link">UCB</a> |
+            <a href="/schools/UCD" class="footer-link">UCD</a> |
+            <a href="/schools/UCI" class="footer-link">UCI</a> |
+            <a href="/schools/UCLA" class="footer-link">UCLA</a> |
+            <a href="/schools/UCM" class="footer-link">UCM</a> |
+            <a href="/schools/UCR" class="footer-link">UCR</a> |
+            <a href="/schools/UCSB" class="footer-link">UCSB</a> |
+            <a href="/schools/UCSC" class="footer-link">UCSC</a> |
+            <a href="/schools/UCSD" class="footer-link">UCSD</a> |
+            <a href="/schools/UCSF" class="footer-link">UCSF</a>
+        </div>
+      </div>
+      <!-- End Schools -->
+    </div>
+    <!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-104310445-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

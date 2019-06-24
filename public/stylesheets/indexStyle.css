@@ -1,0 +1,141 @@
+/* styling for index footer */
+@media (min-width:1000px) {
+  #footer.fixed
+  {
+  	position:absolute;
+  	left:0;
+  	bottom: -10vh;
+  	width: 100%;
+  }
+}
+
+body {
+  height: 100vh;
+}
+
+/* Animations for index  */
+.sliderContainer img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.ctaContainer{
+	position: absolute;
+	top: 25%;
+	left:0;
+	width:100%;
+	text-align:center;
+
+}
+
+.ctaSplash{
+    color: #ECC78A;
+    font-weight: 700;
+    font-size: 3.5em;
+    font-size: 5vw;
+	line-height:1.1;
+    text-shadow: 0 -1px 0px white, 0 3px 12px rgba(0,0,0,0.8);
+    padding: 0.35% 2% 0.35% 2%;
+    background-color: rgba(30,30,30,0.6);
+	display:inline-block;
+}
+
+.ctaContainer a{
+	font-size: 1.5em;
+	font-size: 2vw;
+  /* font-size: 6vw; */
+	background-color: #D45113;
+	font-weight: 300;
+	color: white;
+	box-shadow:0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	height: auto;
+	padding: 1% 2%;
+	text-decoration: none;
+	border-radius: 2px;
+	display:inline-block;
+	margin-top: 0.4em;
+	text-transform: none;
+	line-height: normal;
+	letter-spacing:normal;
+}
+
+.ctaSplash, .ctaContainer a{
+    -moz-animation-name: dropDown;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: ease-out;
+    -moz-animation-duration: 0.9s;
+    -webkit-animation-name: dropDown;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-duration: 0.9s;
+    animation-name: dropDown;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-duration: 0.9s;
+}
+.ctaContainer a{
+	-webkit-animation-delay: 0.7s;
+	-moz-animation-delay: 0.7s;
+	animation-delay: 0.7s;
+	opacity:0;
+	-moz-animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+
+@-moz-keyframes dropDown {
+	0% {
+		-moz-transform: translateY(-100px);
+		opacity:0;
+	}
+	100% {
+		-moz-transform: translateY(0);
+		opacity:1;
+	}
+}
+@-webkit-keyframes dropDown {
+	0% {
+		-webkit-transform: translateY(-100px);
+		opacity:0;
+	}
+	100% {
+		-webkit-transform: translateY(0);
+		opacity:1;
+	}
+}
+@keyframes dropDown {
+	0% {
+		transform: translateY(-100px);
+		opacity:0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity:1;
+	}
+}
+
+
+
+
+@media (max-width:1000px) {
+  .ctaSplash{
+      color: #ECC78A;
+      font-weight: 700;
+      font-size: 2.5em;
+      /* font-size: 5vw; */
+  	line-height:1.1;
+      text-shadow: 0 -1px 0px white, 0 3px 12px rgba(0,0,0,0.8);
+      padding: 0.35% 2% 0.35% 2%;
+      background-color: rgba(30,30,30,0.6);
+  	display:inline-block;
+  }
+
+  .ctaContainer a{
+  	font-size: 1.5em;
+  }
+
+}

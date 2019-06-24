@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutors">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage Tutors</title>
+    <link rel="icon" href="/public/favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/public/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/manageTutors.css">
+    <link rel="stylesheet" href="/public/stylesheets/customCheckToggle.css">
+
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script><!-- load angular js 1.0.8 -->
+    <script src="https://cdn.ravenjs.com/3.24.0/raven.min.js" crossorigin="anonymous"></script>
+
+    <!-- City Location API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNv4_E0ALuc1wUcPZLYkWSZuyfBfuu0I&libraries=places"></script>
+
+    <!-- CROPPIE JS JQUERY STUFF -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.js"></script>
+    <script type="text/javascript" src="/public/javascripts/croppieCustomAdmin.js"></script>
+
+    <!-- Angular App -->
+    <script src="/public/angular/admin/tutorCore.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  </head>
+
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </button>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item active-nav" href="./tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./purchases">PURCHASES</a>
+                    </li>
+                    <!-- <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./payroll">PAYROLL</a>
+                    </li> -->
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./subjects">SUBJECT EDITOR</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./emailer">EMAILER</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- New Signups -->
+    <section class="primary-section search-section text-center">
+        <div class="container top-container">
+
+          <div class="row" ng-hide="newSignupsHide">
+            <div class="col-lg-8 col-lg-offset-2">
+              <h1>New Signups</h1>
+              <h2>Tutors: <span class="badge alert-orange-badge">{{ newSignups.length }}</span></h2>
+              <p>Click the green validate checkbox to move that tutor to the main list and publish their profile.</p>
+              <p>Validating will automatically send a welcome email with a temporary password for their tutor login.</p>
+            </div>
+          </div>
+          <!-- Table -->
+          <div class="row" ng-hide="newSignupsHide">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <!-- Table -->
+                <table class="table table-striped table-bordered">
+                  <col width=20px;>
+                  <col width=20px;>
+                  <col width=20px;>
+                  <col>
+                  <col>
+                  <col>
+                  <col width=20px;>
+                  <tr style="background-color: #009B69; color:white;">
+                    <th>#</th>
+                    <th>Edit</th>
+                    <th>Validate</th>
+                    <th>Name</th>
+                    <th>Nickname</th>
+                    <th>Email</th>
+                    <th class="text-center"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></th>
+                  </tr>
+                  <!-- LOOP OVER THE TUTORS IN $scope.tutors -->
+                  <tr ng-repeat="tutor in tutors | filter:{applyNotificaiton:true}">
+                    <td>{{ $index+1 }}</td>
+                    <td><button type="button" class="btn btn-info center-block btn-sm" data-toggle="modal" data-target="#tutorModal" ng-click="editThisTutor()"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button></td>
+                    <td class="text-center center-stuff">
+                      <button type="button" class="btn btn-default center-block btn-teal-sm" data-target="#tutorModal" ng-click="validateThisTutor()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                    </td>
+                    <td>{{ tutor.firstName }} {{ tutor.lastName }}</td>
+                    <td>{{ tutor.nickname }}</td>
+                    <td>{{ tutor.contact.email }}</td>
+                    <td><button type="button" class="btn btn-danger center-block" ng-click="deleteThisTutor(tutor)">
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- End New Signups row -->
+
+          <!-- Main Tutors -->
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+              <h1>Tutors</h1>
+              <h2>Total Tutors: <span class="badge tutor-badge">{{ tutors.length }}</span></h2>
+              <h2>Total Active Tutors: <span class="badge tutor-badge">{{ (tutors | filter:{activeTutor:true}).length }}</span></h2>
+            </div>
+          </div>
+
+          <!-- Add Tutor -->
+          <div class="row text-center">
+            <div class="col-sm-4 col-sm-offset-4">
+              <button type="button" class="btn btn-danger btn-block btn-lg btn-bad" data-toggle="modal" data-target="#tutorModal" ng-click="addTutor()">
+                Add Tutor
+              </button>
+            </div>
+          </div>
+          <!-- SEARCH BOX -->
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <div class="input-group">
+                <input id="search_field" type="text" class="form-control input-lg" ng-model="searchField" ng-change="searchUpdate()">
+                <span class="input-group-btn">
+                    <button id="search_button" ng-click="searchUpdate()" class="btn btn-raised btn-info btn-lg" type="button" style="margin:0px;">Search</button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- End Search Box -->
+        </div>
+    </section>
+
+    <!-- Tutor Table -->
+    <section class="primary-section table-section">
+        <div class="container">
+          <!-- Table -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <!-- Table -->
+                <table class="table table-striped table-bordered" id="data_table">
+                  <col width=20px;>
+                  <col width=20px;>
+                  <col width=20px;>
+                  <col>
+                  <col>
+                  <col>
+                  <col>
+                  <col width=20px;>
+                  <tr style="background-color: #009B69; color:white;">
+                    <th>#</th>
+                    <th>Edit</th>
+                    <th>Active</th>
+                    <th>Name</th>
+                    <th>Nickname</th>
+                    <th>E-mail</th>
+                    <th>Location</th>
+                    <th class="text-center"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></th>
+                  </tr>
+                  <!-- LOOP OVER THE TUTORS IN $scope.tutors -->
+                  <tr ng-repeat="tutor in tutors">
+                    <td>{{ $index+1 }}</td>
+                    <td><button type="button" class="btn btn-info center-block btn-sm" data-toggle="modal" data-target="#tutorModal" ng-click="editThisTutor()"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button></td>
+                    <td class="text-center center-stuff">
+                      <span class="glyphicon glyphicon-ok center-block" ng-hide="!tutor.activeTutor" aria-hidden="true"></span>
+                      <span class="glyphicon glyphicon-remove" ng-hide="tutor.activeTutor" aria-hidden="true"></span>
+                    </td>
+                    <td>{{ tutor.firstName }} {{ tutor.lastName }}</td>
+                    <td>{{ tutor.nickname }}</td>
+                    <td>{{ tutor.contact.email }}</td>
+                    <td>{{ tutor.geoCoded.vicinity }}</td>
+                    <td><button type="button" class="btn btn-danger center-block" ng-click="deleteThisTutor(tutor)">
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- End Table row -->
+        </div>
+    </section>
+
+    <div class="row text-center">
+        <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+    </div>
+
+    <!-- Add Tutor Modal -->
+    <div class="modal" id="tutorModal" tabindex="-1" role="dialog" aria-labelledby="tutorModalLabel" ng-class="tutorModalClass">
+      <div class="modal-dialog adminTutorModalMargin" role="document">
+        <div class="modal-content adminTutorModalContent">
+          <div class="modal-body adminTutorModalBody" >
+            <!-- HEADER -->
+            <h2 class="modal-title text-center" ng-hide="hideAddModal">Add Tutor</h2>
+            <h2 class="modal-title text-center" ng-hide="hideUpdateModal">Update Tutor</h2>
+            <h3 class="error-message text-left">{{errorMessage}}</h3>
+            <br>
+            <!-- Close and Update buttons-->
+            <div class="row">
+              <div class="col-md-4 col-md-offset-2">
+                <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal" ng-click="cancelModal()">Close</button>
+              </div>
+              <div class="col-md-4">
+                <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="createTutor()" data-dismiss="modal" ng-hide="hideAddModal">Add Tutor</button>
+                <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="updateTutor()" data-dismiss="modal" ng-hide="hideUpdateModal" ng-disabled="!locationValid">Update Tutor</button>
+              </div>
+            </div>
+            <br>
+            <hr>
+            <!-- End Header -->
+            <!-- Active Tutor -->
+            <!-- Rounded switch -->
+            <div class="row toggle-row">
+              <div class="col-xs-4 text-center toggle-div">
+                <label class="switch">
+                  <input type="checkbox" ng-model="formData.partyHost">
+                  <span class="slider round"></span>
+                </label>
+                <h3 ng-hide="!formData.partyHost">Promoter</h3>
+                <p ng-hide="!formData.partyHost">Willing to be a local rep.</p>
+                <h3 ng-hide="formData.partyHost">Non-Promoter</h3>
+                <p ng-hide="formData.partyHost">Does not locally promote.</p>
+              </div>
+              <div class="col-xs-4 text-center toggle-div">
+                <label class="switch">
+                  <input type="checkbox" ng-model="formData.activeTutor">
+                  <span class="slider round"></span>
+                </label>
+                <h3 ng-hide="!formData.activeTutor">Active Tutor</h3>
+                <p ng-hide="!formData.activeTutor">Will be visible in web searches.</p>
+                <h3 ng-hide="formData.activeTutor">Non-Active Tutor</h3>
+                <p ng-hide="formData.activeTutor">Will be hidden in web searches.</p>
+              </div>
+              <div class="col-xs-4 text-center toggle-div">
+                <label class="switch">
+                  <input type="checkbox" ng-model="formData.onlineTutor">
+                  <span class="slider round"></span>
+                </label>
+                <h3 ng-hide="!formData.onlineTutor">Available To Tutor Online</h3>
+                <p ng-hide="!formData.onlineTutor">Will display on any location web search.</p>
+                <h3 ng-hide="formData.onlineTutor">In-Person Tutor</h3>
+                <p ng-hide="formData.onlineTutor">Only displayed if location and max-distance interscect search location.</p>
+              </div>
+            </div>
+            <h2>Contact Info</h2>
+            <br>
+            <!-- name INPUT -->
+            <h3>First Name</h3>
+            <div class="input-group-lg">
+              <input ng-model="formData.firstName" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <h3>Last Name</h3>
+            <div class="input-group-lg">
+              <input ng-model="formData.lastName" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <!-- nickname INPUT -->
+            <h3>Fun Nickname</h3>
+            <p>May not contain your first or last name (think superhero-ish, The Flash, Ninja, etc).</p>
+            <div class="input-group-lg">
+              <input ng-model="formData.nickname" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <!-- youtube profile video INPUT -->
+            <div class="input-group-lg">
+              <h2>Youtube profile video</h2>
+              <p>Copy the url of the youtube video.   <i style="color:gray;">example: https://www.youtube.com/watch?v=EBh-3T2J07I</i> </p>
+              <input ng-disabled="viewMode" ng-model="formData.profileVideo" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <!-- phone INPUT -->
+            <h3>Phone Number</h3>
+            <p>Must be able to receive texts (SMS).</p>
+            <div class="input-group-lg">
+              <input ng-model="formData.contact.phone" type="text" class="form-control " placeholder="555-555-5555" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <!-- email INPUT -->
+            <h3>E-mail</h3>
+            <p>Non-school emails only please (gmail, yahoo, hotmail, etc). <br>No "edu" emails, schools tend to block attachments.</p>
+            <div class="input-group-lg">
+              <input ng-model="formData.contact.email" type="text" class="form-control " placeholder="bad@ass.com" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <!-- email INPUT -->
+            <h3> <b>Tutor Portal Login</b> E-mail</h3>
+            <p>This is the email the tutor uses to login.</p>
+            <div class="input-group-lg">
+              <input ng-model="formData.local.email" type="text" class="form-control " aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <!-- Residence Full Address -->
+            <div class="input-group-lg">
+              <h2>Residential Address</h2>
+              <p>Your address will stay private. It will not be shared. Zip code is for in-person tutor searches by students and should be from where you travel to meet students. You can be an online tutor only but all tutors can tutor online if they wish to.</p>
+              <p class="error-message">{{locationErrorMessage}}</p>
+              <input type="text" class="form-control" id="googlePlacesSearch" autocomplete="on"  ng-model="locationStuff" ng-change="addressChange()">
+            </div>
+            <br>
+            <!-- Distance willing to drive -->
+            <h2>Max Travel Distance</h2>
+            <h4>Max distance tutor is willing to commute (one-way in miles)</h4>
+            <h4>This is important for matching online searches.</h4>
+            <p>If you plan to be an online tutor only, select 'Online Tutor'</p>
+            <div class="input-group-lg">
+              <select ng-model="formData.location.serviceDistance" class="form-control small-field" name="">
+                <option value="0">Online Tutor</option>
+                <option value="5">5 Miles</option>
+                <option value="10">10 Miles</option>
+                <option value="15">15 Miles</option>
+                <option value="20">20 Miles</option>
+                <option value="25">25 Miles</option>
+                <option value="30">30 Miles</option>
+                <option value="35">35 Miles</option>
+                <option value="40">40 Miles</option>
+              </select>
+            </div>
+            <br>
+            <!-- Bio INPUT -->
+            <h2>Full Bio</h2>
+            <h4>This appears only in the detail tutor page, not on your search results preview.</h4>
+            <textarea ng-model="formData.bio" class="form-control" rows="6" placeholder=""></textarea>
+            <br>
+            <!-- shortBio INPUT -->
+            <h2>Bio Preview</h2>
+            <h4>This appears only in the search results preview. </h4>
+            <textarea ng-model="formData.shortBio" class="form-control" rows="2" placeholder=""></textarea>
+            <br>
+            <!-- pay INPUT -->
+            <div class="input-group-lg">
+              <h2>Hourly Pay</h2>
+              <h4>Tutoring charge rate: <b class="green-highlight">${{ (formData.payRate * 2)-15  }}-{{ (formData.payRate * 2) +5 }} per hour</b></h4>
+              <h4>Your pay rate: </h4>
+              <select ng-model="formData.payRate" class="form-control small-field" name="">
+                <option value="20">$20 per hour</option>
+                <option value="25">$25 per hour</option>
+                <option value="30">$30 per hour</option>
+                <option value="35">$35 per hour</option>
+                <option value="40">$40 per hour</option>
+                <option value="45">$45 per hour</option>
+                <option value="50">$50 per hour</option>
+                <option value="55">$55 per hour</option>
+                <option value="60">$60 per hour</option>
+                <option value="65">$65 per hour</option>
+                <option value="70">$70 per hour</option>
+                <option value="75">$75 per hour</option>
+                <option value="80">$80 per hour</option>
+                <option value="85">$85 per hour</option>
+                <option value="90">$90 per hour</option>
+                <option value="95">$95 per hour</option>
+                <option value="100">$100 per hour</option>
+                <option value="110">$110 per hour</option>
+                <option value="120">$120 per hour</option>
+                <option value="130">$130 per hour</option>
+                <option value="140">$140 per hour</option>
+                <option value="150">$150 per hour</option>
+                <option value="160">$160 per hour</option>
+                <option value="170">$170 per hour</option>
+                <option value="180">$180 per hour</option>
+                <option value="190">$190 per hour</option>
+                <option value="200">$200 per hour</option>
+              </select>
+            </div>
+            <br>
+            <!-- education INPUT -->
+            <div class="input-group-lg">
+              <h2>Education</h2>
+              <input ng-model="formData.education" type="text" class="form-control " placeholder="BA, Swiss Federal Polythecnic. PhD, Univerisy of Zurich." aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <!-- schedule INPUT -->
+            <h2>Schedule</h2>
+            <h4>Tutoring availability (list available day and times)</h4>
+            <textarea ng-model="formData.schedule" class="form-control" rows="6" placeholder="Monday-Friday: 10am-8pm"></textarea>
+            <br>
+            <!-- Comments -->
+            <h2>Other Classes or Comments</h2>
+            <h4>Class not listed? Hobbies? Interests you have expertise? Fishing, tattooing, glass blowing? </h4>
+            <textarea ng-model="formData.comments" class="form-control" rows="3" placeholder=""></textarea>
+          <br>
+          <!-- PHOTO * START -->
+          <form class="text-center row-thick" id="form1" runat="server">
+            <h2>Tutor Photo Upload</h2>
+            <!-- JQUERY CROPPIE -->
+            <div class="" id="photoUploadDiv">
+              <div class="row">
+                <input type="file" id="upload" value="Choose a file" accept="image/*" class="btn btn-info center-block"/>
+                <img src="" id="upload-demo" alt="">
+              </div>
+              <div class="row">
+                <button class="btn btn-danger btn-lg upload-result" ng-click="savePhoto()">SAVE PHOTO</button>
+                <h2 ng-hide="photoSaved" class="error-message">Photo not saved!</h2>
+                <h2 ng-hide="!photoSaved">Photo saved!</h2>
+              </div>
+            </div>
+
+            <div id="photoExistingDiv">
+              <div class="row">
+                  <img id="tutorImagePreview" class="img-responsive center-block" width="300px" height="300px" alt="">
+              </div>
+              <div class="row">
+                  <button class="btn btn-danger btn-lg" id="editPhotoButton" ng-click="editPhoto()">Edit Photo</button>
+                  <p class="error-message" ng-hide="photoUpdateRequired || hideUpdateModal">For photo to be saved, update tutor profile.</p>
+              </div>
+            </div>
+            <!-- JQUERY CROPPIE -->
+          </form>
+          <!-- PHOTO * END -->
+
+          <br>
+          <!-- Subjects INPUT -->
+          <div class="panel panel-default">
+            <div class="panel-heading" name="subjectHeading">
+              <h2 class="">Subjects, Classes and Hobbies</h2>
+            </div>
+            <div class="panel-body">
+              <div class="row row-gray" ng-repeat="subject in formData.subjects">
+                <!-- Subject Category Input -->
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <h4> <b>Subject:</b> </h4>
+                    <label for="sel1">Select subject:</label>
+                    <select class="form-control" ng-options="item as item for item in subjectCategories" ng-model="subject.subjectCategory">
+                    </select>
+                  </div>
+                  <div class="input-group-lg">
+                    <p ng-hide="(subject.subjectCategory!='Add Custom Subject')">Enter Subject:</p>
+                    <input class="capitalize" ng-hide="(subject.subjectCategory!='Add Custom Subject')" ng-model="subject.customSubject" type="text" class="form-control " aria-describedby="sizing-addon1">
+                  </div>
+                  <br>
+                  <button type="button" class="btn btn-danger" ng-click="removeSubject($index)">Remove Subject</button>
+                </div>
+                <!-- Test fields for classes -->
+                <div class="col-md-8">
+                  <p>Enter each class name or  separated by a comma and space. Try to keep class names generic as possible for better search results.</p>
+                  <h4> <b>Classes or Hobby Description:</b> </h4>
+                  <textarea ng-model="subject.classes" class="form-control" rows="6" placeholder="class 1, class 2, class 3"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 col-sm-offset-4">
+                  <!-- Add Subject Button -->
+                  <button type="button" class="btn btn-danger btn-block btn-lg btn-bad" ng-click="addSubject()">Add Subject</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <hr>
+          <h3 class="error-message text-left">{{errorMessage}}</h3>
+          <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+              <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal" ng-click="cancelModal()">Close</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="createTutor()" data-dismiss="modal" ng-hide="hideAddModal">Add Tutor</button>
+              <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="updateTutor()" data-dismiss="modal" ng-hide="hideUpdateModal" ng-disabled="!locationValid">Update Tutor</button>
+            </div>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+    <!-- Delete Tutor Modal -->
+    <div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-class="deleteModalClass">
+      <div class="modal-dialog delete-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center delete-modal">
+            <h1>CONFIRM DELETION</h1>
+            <hr>
+            <br>
+            <br>
+            <h2>Are you sure you want to delete this tutor?</h2>
+            <br>
+            <h2> <b>{{ deleteName }}</b> </h2>
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+            <div class="row">
+              <div class="col-xs-5 col-xs-offset-1">
+                <button type="button" class="btn btn-default btn-lg btn-block drop-shadow" ng-click="abortDeleteTutor()">No, Cancel</button>
+              </div>
+              <div class="col-xs-5">
+                <button type="button" class="btn btn-danger btn-lg btn-block drop-shadow" ng-click="deleteTutor()">DELETE FOREVER</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- LOADING MODAL -->
+    <div class="modal" id="loadingModal" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" ng-class="loadingClass">
+      <div class="modal-dialog loading-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center loading-modal">
+            <div class="row">
+              <br>
+              <h1>Loading...</h1>
+              <h2>Kick-back and have a deep breath.</h2>
+              <img src="/public/images/np_hammock.png" class="img-responsive center-block" alt="">
+            </div>
+            <div class="row">
+              <div class="col-xs-12  loading-center">
+                <div class="loader center-block"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </body>
+
+</html>

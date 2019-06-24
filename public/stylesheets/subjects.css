@@ -1,0 +1,14 @@
+.subjectDescription{
+  padding-bottom: 30px;
+}
+
+.subject-link {
+  text-transform: capitalize;
+  font-size: 150%;
+  padding-bottom: 15px;
+
+}
+
+.subjectButton{
+  text-transform: uppercase;
+}

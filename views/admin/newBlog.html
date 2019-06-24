@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutors">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>new blog</title>
+    <link rel="icon" href="/public/favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/public/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/manageTutors.css">
+    <link rel="stylesheet" href="/public/stylesheets/customCheckToggle.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script><!-- load angular js 1.0.8 -->
+    <script src="/public/angular/admin/newblogCore.js"></script><!-- Angular App -->
+  </head>
+
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </button>
+                <h1 class="navbar-brand">Badass Tutors</h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./purchases">PURCHASES</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./blog">BLOG</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- How to Get Started -->
+    <section class="primary-section search-section text-center">
+        <div class="container top-container">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>New Blog Post </h1>
+
+            </div>
+          </div>
+
+        </div>
+    </section>
+
+    <!-- Blog Input -->
+    <section class="primary-section">
+        <div class="container">
+          <!-- Table -->
+          <div class="row" class="text-center">
+            <div class="col-sm-8 col-sm-offset-2">
+              <h3>Author first name</h3>
+              <div class="input-group-lg">
+                <input ng-model="formData.author.name" type="text" class="form-control ">
+              </div>
+
+              <h3>Author nickname</h3>
+              <div class="input-group-lg">
+                <input ng-model="formData.author.nickname" type="text" class="form-control ">
+              </div>
+              <h3>Author ID</h3>
+              <div class="input-group-lg">
+                <input ng-model="formData.author.id" type="text" class="form-control ">
+              </div>
+              <h3>Date Posted</h3>
+              <div class="input-group-lg">
+                <input id="date" type="text" ng-model="formData.creationDate">
+              </div>
+
+              <hr>
+              <h2>Post Title</h2>
+              <div class="input-group-lg">
+                <input ng-model="formData.post_title" type="text" class="form-control ">
+              </div>
+              <hr>
+              <h2>Post Content</h2>
+              <textarea ng-model="formData.post_content" class="form-control input-thick" rows="20" placeholder=""></textarea>
+              <hr>
+              <div class="text-center">
+                  <button type="button" class="btn btn-danger btn-lg" name="button" ng-click="submitBlog()">SUBMIT POST</button>
+              </div>
+
+
+
+            </div>
+
+          </div>
+        </div>
+    </section>
+
+    <div class="row text-center">
+        <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+    </div>
+
+
+
+  <!-- LOADING MODAL -->
+  <div class="modal" id="loadingModal" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" ng-class="loadingClass">
+    <div class="modal-dialog loading-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center loading-modal">
+          <div class="row">
+            <br>
+            <h1>Uploading...</h1>
+            <h2>Kick-back and have a deep breath.</h2>
+            <img src="/public/images/np_hammock.png" class="img-responsive center-block" alt="">
+          </div>
+          <div class="row">
+            <div class="col-xs-12  loading-center">
+              <div class="loader center-block"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutorsCheckout">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>check out page 2</title>
+    <link rel="icon" href="./public/favicon.ico">
+
+
+    <!-- Paypal -->
+    <!-- <script src="https://www.paypalobjects.com/api/checkout.js"></script> -->
+
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="https://cdn.ravenjs.com/3.24.0/raven.min.js" crossorigin="anonymous"></script>
+
+    <!-- link to the SqPaymentForm library -->
+    <script type="text/javascript" src="https://js.squareup.com/v2/paymentform"></script>
+    <script src="/public/javascripts/sqpaymentform.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./public/stylesheets/style.css">
+    <link rel="stylesheet" href="./public/stylesheets/checkout.css">
+    <!-- SPELLS -->
+
+    <script src="/public/javascripts/angular.min.js"></script>
+    <script src="/public/javascripts/angular-cookies.min.js"></script>
+    <script src="/public/angular/tutorCheckout2.js"></script>
+
+    <link rel="stylesheet" href="./public/stylesheets/sqpaymentform.css">
+  </head>
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/Book">BOOK</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="https://blog.badasstutors.com">BLOG</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item active-nav" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Title Area -->
+    <section class="primary-section text-center">
+        <div class="container top-container">
+          <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+              <h1>Shopping Cart</h1>
+              <button type="button" name="button" class="btn btn-danger btn-lg btn-block" ng-click="cancelOrder()">Cancel Purchase</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+
+                <br>
+                <h2>Payment Method</h2>
+                <hr>
+                <h2 class="text-center">Purchase Total: ${{ total }}</h2>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+    <!-- Payment  -->
+    <section class="white-section">
+
+
+
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+
+          <!-- Billing Info -->
+          <h2 class="text-center">Billing Address</h2>
+          <hr>
+          <!-- address 1 INPUT -->
+          <div class="input-group-lg">
+            <h3 class="text-left">Address:</h3>
+            <p class="text-left error-message" ng-hide="sq_address1">Required</p>
+            <p class="text-left success-message" ng-hide="!sq_address1">Required</p>
+            <input id="add1" ng-model="sq_address1" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+          </div>
+
+          <!-- address 2 INPUT -->
+          <div class="input-group-lg">
+            <h3 class="text-left">Address Line 2:</h3>
+            <input id="add2" ng-model="sq_address2" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+          </div>
+
+          <!-- city INPUT -->
+          <div class="input-group-lg">
+            <h3 class="text-left">City:</h3>
+            <p class="text-left error-message" ng-hide="sq_city">Required</p>
+            <p class="text-left success-message" ng-hide="!sq_city">Required</p>
+            <input id="city" ng-model="sq_city" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+          </div>
+
+          <!-- city INPUT -->
+          <div class="input-group-lg">
+            <h3 class="text-left">State:</h3>
+            <p class="text-left error-message" ng-hide="sq_state">Required</p>
+            <p class="text-left success-message" ng-hide="!sq_state">Required</p>
+            <input id="state" ng-model="sq_state" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+          </div>
+
+          <!-- email INPUT -->
+          <div class="input-group-lg">
+            <h3 class="text-left">Billing E-mail:</h3>
+            <p class="text-left error-message" ng-hide="sq_email">Required</p>
+            <p class="text-left success-message" ng-hide="!sq_email">Required</p>
+            <input id="email" ng-model="sq_email" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+          </div>
+
+
+            <!-- SQUARE START -->
+            <div id="sq-ccbox">
+            <!--
+              You should replace the action attribute of the form with the path of
+              the URL you want to POST the nonce to (for example, "/process-card")
+            -->
+            <form id="nonce-form" novalidate action="path/to/payment/processing/page" method="post">
+              <h2>Credit Card</h2>
+              <hr>
+              <table>
+              <tbody>
+                <tr>
+                  <td>Card Number:</td>
+                  <td><div id="sq-card-number"></div></td>
+                </tr>
+                <tr>
+                  <td>CVV:</td>
+                  <td><div id="sq-cvv"></div></td>
+                </tr>
+                <tr>
+                  <td>Expiration Date: </td>
+                  <td><div id="sq-expiration-date"></div></td>
+                </tr>
+                <tr>
+                  <td>Postal Code:</td>
+                  <td><div id="sq-postal-code"></div></td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <h2 class="text-center">Purchase Total: ${{ total }}</h2>
+                    <button id="sq-creditcard" class="button-credit-card" onclick="requestCardNonce(event)" ng-disabled="!(sq_email && sq_address1 && sq_city && sq_state && sq_email)">
+                      Pay with card
+                    </button>
+                    <p class="error-message" ng-hide="(sq_email && sq_address1 && sq_city && sq_state && sq_email)">*Please fill out full billing address before proceding.</p>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
+
+              <!--
+                After a nonce is generated it will be assigned to this hidden input field.
+              -->
+              <input type="hidden" id="card-nonce" name="nonce">
+            </form>
+          </div>
+
+          <!-- <div id="sq-walletbox">
+            Pay with a Digital Wallet
+            <div id="sq-apple-pay-label" class="wallet-not-enabled">Apple Pay for Web not enabled</div>
+
+            <button id="sq-apple-pay" class="button-apple-pay"></button>
+
+            <div id="sq-masterpass-label" class="wallet-not-enabled">Masterpass not enabled</div>
+
+            <button id="sq-masterpass" class="button-masterpass"></button>
+          </div> -->
+
+
+            <!-- SQUARE END -->
+        </div>
+
+      </div>
+
+
+
+
+
+
+      <!-- Paypal -->
+      <!-- <div class="row text-center" ng-hide="!(formData.studentFirstName && formData.studentLastName && formData.studentEmail && formData.studentPhone && formData.studentAddress && formData.school && termsAccepted)">
+        <div id="paypal-button"></div>
+      </div> -->
+
+      <!-- DEV -->
+      <!-- <button type="button" class="btn btn-danger btn-lg btn-block" name="button" ng-click="testCheckout()">TEST</button> -->
+
+    </section>
+
+    <!-- LOADING MODAL -->
+    <div class="modal" id="loadingModal" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" ng-class="loadingClass">
+      <div class="modal-dialog loading-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center loading-modal">
+            <div class="row">
+              <br>
+              <h1>Uploading...</h1>
+              <h2>Kick-back and have a deep breath.</h2>
+              <img src="/public/images/np_hammock.png" class="img-responsive center-block" alt="">
+            </div>
+            <div class="row">
+              <div class="col-xs-12  loading-center">
+                <div class="loader center-block"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOADING MODAL -->
+    <div class="modal" id="errorModal" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" ng-class="errorClass">
+      <div class="modal-dialog loading-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center loading-modal">
+            <div class="row">
+              <br>
+              <h1>Purchase Error</h1>
+              <hr>
+              <br>
+              <br>
+              <h2 id="errorModalText"></h2>
+              <br>
+              <h4 id="errorModalTextCode"></h4>
+              <br>
+              <br>
+              <h3>Also, you can text or call us at <b>805-806-0305</b> and we will take care of you.</h3>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 col-sm-offset-4">
+                <button id="errorTryAgain" type="button" class="btn btn-info btn-lg btn-block">
+                  TRY AGAIN
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- Footer -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 moble-footer">
+          <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+        </div>
+        <div class="col-sm-6 text-right moble-footer">
+            <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use</a>
+        </div>
+      </div>
+      <!-- Schools -->
+      <div class="row ">
+        <div class="col-sm-12 text-center">
+            <a href="/schools/calpoly-pomona" class="footer-link">Cal Poly Pomona</a> |
+            <a href="/schools/calpoly" class="footer-link">Cal Poly SLO</a> |
+            <a href="/schools/CSUB" class="footer-link">CSUB</a> |
+            <a href="/schools/CSUC" class="footer-link">CSUC</a> |
+            <a href="/schools/CSUCI" class="footer-link">CSUCI</a> |
+            <a href="/schools/CSUDH" class="footer-link">CSUDH</a> |
+            <a href="/schools/CSUEB" class="footer-link">CSUEB</a> |
+            <a href="/schools/CSUFRESNO" class="footer-link">CSU FRESNO</a> |
+            <a href="/schools/CSUFULLERTON" class="footer-link">CSU FULLERTON</a> |
+            <a href="/schools/CSULA" class="footer-link">CSULA</a> |
+            <a href="/schools/CSULB" class="footer-link">CSULB</a> |
+            <a href="/schools/CSUMB" class="footer-link">CSUMB</a> |
+            <a href="/schools/CSUN" class="footer-link">CSUN</a> |
+            <a href="/schools/CSUS" class="footer-link">CSUS</a> |
+            <a href="/schools/CSUSB" class="footer-link">CSUSB</a> |
+            <a href="/schools/CSUSM" class="footer-link">CSUSM</a> |
+            <a href="/schools/HSU" class="footer-link">HSU</a> |
+            <a href="/schools/SBCC" class="footer-link">SBCC</a> |
+            <a href="/schools/SDSU" class="footer-link">SDSU</a> |
+            <a href="/schools/SSU" class="footer-link">SSU</a> |
+            <a href="/schools/STANISLAUSSTATE" class="footer-link">STANISLAUS STATE</a> |
+            <a href="/schools/UCB" class="footer-link">UCB</a> |
+            <a href="/schools/UCD" class="footer-link">UCD</a> |
+            <a href="/schools/UCI" class="footer-link">UCI</a> |
+            <a href="/schools/UCLA" class="footer-link">UCLA</a> |
+            <a href="/schools/UCM" class="footer-link">UCM</a> |
+            <a href="/schools/UCR" class="footer-link">UCR</a> |
+            <a href="/schools/UCSB" class="footer-link">UCSB</a> |
+            <a href="/schools/UCSC" class="footer-link">UCSC</a> |
+            <a href="/schools/UCSD" class="footer-link">UCSD</a> |
+            <a href="/schools/UCSF" class="footer-link">UCSF</a>
+        </div>
+      </div>
+      <!-- End Schools -->
+    </div>
+    <!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-104310445-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

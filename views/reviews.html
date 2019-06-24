@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutorsCheckout">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Our Testimonials</title>
+    <link rel="icon" href="./public/favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./public/stylesheets/style.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script>
+    <script src="/public/javascripts/angular-cookies.min.js"></script>
+    <script src="/public/angular/tutorBuy.js"></script>
+  </head>
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item active-nav" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/Book">BOOK</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="https://blog.badasstutors.com">BLOG</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- How to Get Started -->
+    <section class="primary-section text-center">
+        <div class="container top-container">
+          <div class="row">
+            <div class="text-center center-block">
+              <br>
+              <iframe class="visible-xs" width="320" height="180" src="https://www.youtube.com/embed/EBh-3T2J07I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <iframe class="hidden-xs" width="560" height="315" src="https://www.youtube.com/embed/EBh-3T2J07I?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>Our students love us</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Brenda, SLO High Parent</h3>
+              <h4>"The tutoring went great. We used Diego for statistics, very organized and lots of helpful hints, and then we saw Nina for English and again lots of good direction and helped with focus. We would use both of them again but we don't need any more hours at the moment. So glad that we made the connection."</h4>
+            </div>
+            <div class="col-md-4">
+              <h3>Derek, Cal Poly Student</h3>
+              <h4>"It is not easy to find a tutor for my classes. Most of them are 300 level. My tutor was great for my engineering classes. Statics. Thanks for matching with a tutor fast."</h4>
+            </div>
+            <div class="col-md-4">
+              <h3>Michelle, Cal Poly Student</h3>
+              <h4>"I didn't think I could find a tutor who fit my schedule and style of learning. I need a tutor who is really patient because I have difficulty with staying focused. I get frustrated easily.I had to try a couple tutors until I found a good fit. My tutor really took the time to figure out where I was going wrong. I appreciate it. Thank you."</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Wally, Cal Poly Student</h3>
+              <h4>"I was struggling with managing time between work, school, and a social life. I am the president in one of my clubs. I learned a lot from time-management advice. Speed quizzes are a great idea, big help. Working weekly with a tutor saved me a lot of time."</h4>
+            </div>
+            <div class="col-md-4">
+              <h3>Kate and Richard, Cuesta Parents</h3>
+              <h4>"Tutoring didn't seem to us an affordable option. I liked that Badass Tutors had a guarantee on their package deals. They took the time to make a good match for our daughter. We still use their tutors but the study skills advice is a good compliment to their knowledgeable tutors."</h4>
+            </div>
+            <div class="col-md-4">
+              <h3>Donna, SLO High Parent</h3>
+              <h4>"Our main concern was whether tutoring would help. Our son has ADHD and can't sit still very long. Andre was very helpful as well as was the study skills program. We tried a small plan and upgraded to the guarantee later. We haven't needed another tutor since. Thank you."</h4>
+            </div>
+			<div class="col-md-4">
+              <h3>Anna, Cal Poly Ochem Student</h3>
+              <h4>"I've been seeing Robb for 2 quarters now, went from failing to a C first quarter, got a B this quarter! Thank you Robb."</h4>
+            </div>
+			<div class="col-md-4">
+              <h3>Kyle, Paso Robles High School</h3>
+              <h4>"I was sick for a month and fell way behind. I got two bulk packages. Badass Tutors sent me 3 tutors for daily help. I am totally caught up now."</h4>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Buy hours and Footer -->
+    <section id="footer">
+      <div class="row text-center center-block buy-hours vcenter-md footer-row">
+        <div class="col-md-3">
+          <a class="buy-hours-font text-center"  href="/buy"> BUY HOURS </a>
+        </div>
+        <div class="col-md-3 footer-col-stack-padding">
+          <button type="button" class="btn btn-danger btn-lg btn-bad btn-block" ng-click="buyHours('6')">16 HOURS GUARANTEED ABC</button>
+        </div>
+        <div class="col-md-3 footer-col-stack-padding">
+          <button type="button" class="btn btn-danger btn-lg btn-bad btn-block" ng-click="buyHours('7')">24 HOURS GUARANTEED AB</button>
+        </div>
+        <div class="col-md-3 footer-col-stack-padding">
+          <a type="button" href="/buy" class="btn btn-danger btn-lg btn-bad btn-block">ALL PACKAGES</a>
+        </div>
+      </div>
+      <div class="container green-background">
+        <div class="row row-thin footer-row footer-copyright">
+          <div class="col-sm-6 moble-footer">
+            <p class="copyright mobile-no-padding">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+          </div>
+          <div class="col-sm-6 text-right moble-footer mobile-padding">
+              <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use</a>
+          </div>
+        </div>
+        <!-- Schools -->
+        <div class="row ">
+          <div class="col-sm-12 text-center">
+              <a href="/schools/calpoly-pomona" class="footer-link">Cal Poly Pomona</a> |
+              <a href="/schools/calpoly" class="footer-link">Cal Poly SLO</a> |
+              <a href="/schools/CSUB" class="footer-link">CSUB</a> |
+              <a href="/schools/CSUC" class="footer-link">CSUC</a> |
+              <a href="/schools/CSUCI" class="footer-link">CSUCI</a> |
+              <a href="/schools/CSUDH" class="footer-link">CSUDH</a> |
+              <a href="/schools/CSUEB" class="footer-link">CSUEB</a> |
+              <a href="/schools/CSUFRESNO" class="footer-link">CSU FRESNO</a> |
+              <a href="/schools/CSUFULLERTON" class="footer-link">CSU FULLERTON</a> |
+              <a href="/schools/CSULA" class="footer-link">CSULA</a> |
+              <a href="/schools/CSULB" class="footer-link">CSULB</a> |
+              <a href="/schools/CSUMB" class="footer-link">CSUMB</a> |
+              <a href="/schools/CSUN" class="footer-link">CSUN</a> |
+              <a href="/schools/CSUS" class="footer-link">CSUS</a> |
+              <a href="/schools/CSUSB" class="footer-link">CSUSB</a> |
+              <a href="/schools/CSUSM" class="footer-link">CSUSM</a> |
+              <a href="/schools/HSU" class="footer-link">HSU</a> |
+              <a href="/schools/SBCC" class="footer-link">SBCC</a> |
+              <a href="/schools/SDSU" class="footer-link">SDSU</a> |
+              <a href="/schools/SSU" class="footer-link">SSU</a> |
+              <a href="/schools/STANISLAUSSTATE" class="footer-link">STANISLAUS STATE</a> |
+              <a href="/schools/UCB" class="footer-link">UCB</a> |
+              <a href="/schools/UCD" class="footer-link">UCD</a> |
+              <a href="/schools/UCI" class="footer-link">UCI</a> |
+              <a href="/schools/UCLA" class="footer-link">UCLA</a> |
+              <a href="/schools/UCM" class="footer-link">UCM</a> |
+              <a href="/schools/UCR" class="footer-link">UCR</a> |
+              <a href="/schools/UCSB" class="footer-link">UCSB</a> |
+              <a href="/schools/UCSC" class="footer-link">UCSC</a> |
+              <a href="/schools/UCSD" class="footer-link">UCSD</a> |
+              <a href="/schools/UCSF" class="footer-link">UCSF</a>
+          </div>
+        </div>
+        <!-- End Schools -->
+      </div>
+    </section>
+    <!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-104310445-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

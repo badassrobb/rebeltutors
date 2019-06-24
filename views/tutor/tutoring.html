@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutors">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tutor Portal</title>
+    <link rel="icon" href="/public/favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/public/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/apply.css">
+    <link rel="stylesheet" href="/public/stylesheets/customCheckToggle.css">
+    <link rel="stylesheet" href="/public/stylesheets/loggedHours.css">
+
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script><!-- load angular js 1.0.8 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js">
+
+    </script>
+    <!-- Angular App -->
+    <script src="/public/angular/tutor/tutorTutoring.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  </head>
+
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </button>
+                <h1 class="navbar-brand adminNav">
+                    Badass Tutors
+                </h1>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item active-nav" href="./tutoring">TUTORING</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./historical">HISTORICAL</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./profile">PROFILE</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./settings">SETTINGS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./logout">LOGOUT</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll nav-item" href="./help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true" style="font-size:110%;"></span></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <section class="primary-section search-section text-center">
+        <div class="container top-container">
+          <div class="row" ng-hide="newSignupsHide">
+            <div class="col-lg-8 col-lg-offset-2">
+              <h1>Active Tutoring Sessions</h1>
+              <h2>Count: <span class="badge alert-orange-badge">{{ (students | filter:{purchaseComplete:false}).length }}</span></h2>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="primary-section text-center thin-padding">
+        <div class="container">
+          <div class="row" ng-hide="newSignupsHide">
+            <div class="col-lg-10 col-lg-offset-1">
+              <div class="row text-center" ng-repeat="purchase in students" ng-init="purchaseIndex=$index">
+                <!-- <div class="col-sm-6 col-sm-offset-3" > -->
+                  <div class="panel panel-primary drop-shadow">
+                    <div class="panel-heading">
+                      <div class="row text-center">
+                        <div class="col-sm-4 text-left">
+                          <h2 class="thin-margin">{{purchase.date | date:'MMM dd, yyyy' : 'PST'}}</h2>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                          <h1 class="thin-margin"> <u>{{ purchase.formData.firstName  }} {{ purchase.formData.lastName }}</u> </h1>
+                        </div>
+                        <div class="col-sm-4 text-right">
+                          <p class="thin-margin"> Phone # {{ purchase.formData.phone }}</p>
+                          <p class="thin-margin"> E-mail: {{ purchase.formData.email }}</p>
+                          <p class="thin-margin"> School: {{ purchase.formData.school }}</p>
+                        </div>
+                        <h4>Student Goals: <b>{{ purchase.formData.goals }}</b> </h4>
+                      </div>
+                    </div>
+                      <div ng-repeat="package in purchase.cart" ng-init="cartIndex=$index">
+                        <div class="panel-body text-center" ng-hide="false">
+                          <div class="row text-left">
+                            <div class="col-sm-6 col-sm-offset-3 well tutoring-details drop-shadow">
+                              <h3 class="thin-margin"> <b>Subject:</b> {{package.subjectCategory}}</h3>
+                              <h3 class="thin-margin"> <b>Class:</b> {{package.class}}</h3>
+                              <h4 class="thin-margin" ng-hide="!(item.onlineTutorSession=='true')"> <b>Session Type:</b> Online Tutoring</h4>
+                              <h4 class="thin-margin" ng-hide="(item.onlineTutorSession=='true')"> <b>Session Type:</b> In-Person Tutoring</h4>
+                              <!-- <h4>Online Tutoring Session: {{package.onlineTutorSession}}</h4> -->
+                              <p class="thin-margin"> <b>Charge Rate:</b> ${{package.hourlyRate}} per hour</p>
+                            </div>
+                          </div>
+                        <br>
+                        <br>
+                        <h1>Assigned Tutors: </h1>
+                        <div class="row">
+                            <div class="col-sm-10 col-sm-offset-1">
+                              <div ng-repeat="assignment in package.assignedTutors" ng-init="assignmentIndex=$index">
+                                <div class="well row thin-padding assigned-tutor drop-shadow">
+                                  <div class="text-left colMargin">
+                                      <div class="col-sm-4">
+                                        <h4>{{assignment.firstName}} {{assignment.lastName}}</h4>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <h4>{{assignment.contact.email}}</h4>
+                                      </div>
+                                      <div class="col-sm-4 sm-text-right">
+                                        <h4>{{assignment.assignedHours | number:2}} Hours Assigned</h4>
+                                      </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <h3 class="text-right"> <b>Total Assigned: {{package.hoursAssigned | number:2}} Hours </b> </h3>
+                              <h3 class="text-right"> <b>Total Purchased: {{package.hours | number:2}} Hours </b> </h3>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <br>
+                        <!-- START LOGGED HOURS **** **** **** -->
+                        <h1>Logged Hours</h1>
+                        <div ng-repeat="assignment in package.assignedTutors" ng-init="assignmentIndex=$index">
+                          <div class="row thin-padding">
+                            <div class="col-sm-4 col-sm-offset-4" ng-hide="(assignment.tutorID != myTutorID)">
+                              <button class="btn btn-success btn-lg btn-block drop-shadow" type="button" name="button" ng-click="showLogModal(purchaseIndex, cartIndex, assignmentIndex)" ng-disabled="package.loggedHoursLeft==0">LOG SESSION</button>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <!-- Logged Hours List -->
+                        <div ng-repeat="log in package.loggedHours | orderBy:'date':true ">
+                          <div class="row thin-padding">
+                            <div class="col-sm-10 col-sm-offset-1">
+                              <div class="well thin-padding logged-hour drop-shadow">
+                                <div class="row thin-padding text-left">
+                                  <div class="col-sm-1 colMargin">
+                                    <td><button type="button" class="btn btn-info center-block btn-sm" ng-click="loggedHoursDetails(log)"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <h4 class="thin-margin">{{log.realDate  | date:'MMM dd, yyyy'}}</h4>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <h4 class="thin-margin">Tutor: {{log.tutorFirstName}} {{log.tutorLastName}}</h4>
+                                  </div>
+                                  <div class="col-sm-3 text-right">
+                                    <h4 class="thin-margin" ng-hide="(log.hours == 1)">{{log.hours | number:2}} Hours</h4>
+                                    <h4 class="thin-margin" ng-hide="!(log.hours == 1)">{{log.hours | number:2}} Hour</h4>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-8 col-sm-offset-2">
+                            <h2 class="text-right">Total Logged: {{package.loggedHoursTotal | number:2}} Hours</h2>
+                          </div>
+                        </div>
+                        <!-- End Logged Hours List -->
+                      </div>
+                      <!-- END LOGGED HOURS **** **** **** -->
+                    </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+    <div class="row text-center">
+        <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+    </div>
+
+
+    <!-- Log MODAL -->
+    <div class="modal" id="logModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-class="logHoursClass">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center loading-modal">
+            <h1>Log Tutoring Session</h1>
+            <h3 ng-hide="loggedHoursViewMode">Hours Left: <b class="success-message">{{hoursLeft}}</b> of {{hoursAssigned}}</h3>
+            <div class="row">
+              <div class="col-sm-4">
+                <h2>Date</h2>
+                <hr>
+                <h4>Session Date</h4>
+                <div ng-hide="loggedHoursViewMode" class="input-group-lg">
+                  <input class="form-control center-block" type="date" name="" value="" ng-model="logHours.date" style="max-width:250px;">
+                </div>
+                <h4 ng-hide="!loggedHoursViewMode">{{logHours.realDate  | date:'MMM dd, yyyy'}}</h4>
+              </div>
+              <div class="col-sm-4">
+                <h2>Time</h2>
+                <hr>
+                <h4>Session Start Time</h4>
+                <div ng-hide="loggedHoursViewMode" class="input-group-lg">
+                  <input class="form-control center-block" type="time" name="" value="" ng-model="logHours.time" style="max-width:150px;">
+                </div>
+                <h4 ng-hide="!loggedHoursViewMode">{{logHours.time | date: 'shortTime'}}</h4>
+              </div>
+              <div class="col-sm-4">
+                <h2 class="text-center">Hours</h2>
+                <hr>
+                <h4>Length of Session:</h4>
+                <div ng-hide="loggedHoursViewMode" class="input-group-lg">
+                  <select class="form-control center-block" ng-options="item as item for item in logHourOptions" ng-model="logHours.hours" style="max-width:150px;">
+                  </select>
+                </div>
+                <h4 ng-hide="(!loggedHoursViewMode)">{{logHours.hours}} Hours</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <h2>Class</h2>
+                <div ng-hide="loggedHoursViewMode" class="input-group-lg">
+                  <input class="form-control center-block" type="text" name="" value="" ng-model="logHours.class">
+                </div>
+                <h4 ng-hide="!loggedHoursViewMode">{{logHours.class}}</h4>
+              </div>
+              <div class="col-sm-8">
+                <h2>Description</h2>
+                <div class="input-group-lg">
+                  <textarea ng-hide="loggedHoursViewMode" class="form-control center-block" type="text" name="" value="" rows="1" ng-model="logHours.description"></textarea>
+                  <h4 ng-hide="!loggedHoursViewMode">{{logHours.description}}</h4>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <hr>
+              <p>Note: A copy of the details submitted here are sent to Badass Tutors and the student of this session.</p>
+              <hr>
+            </div>
+            <div class="row" ng-hide="loggedHoursViewMode">
+              <div class="col-sm-6 col-sm-offset-3">
+                  <button type="button" class="btn btn-success btn-lg btn-block" name="button" ng-click="submitLogModal()">Submit</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                  <button type="button" class="btn btn-default btn-lg btn-block" name="button" ng-click="closeLogModal()">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOADING MODAL -->
+    <div class="modal" id="loadingModal" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" ng-class="loadingClass">
+      <div class="modal-dialog loading-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center loading-modal">
+            <div class="row">
+              <br>
+              <h1>Uploading...</h1>
+              <h2>Kick-back and have a deep breath.</h2>
+              <img src="/public/images/np_hammock.png" class="img-responsive center-block" alt="">
+            </div>
+            <div class="row">
+              <div class="col-xs-12  loading-center">
+                <div class="loader center-block"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </body>
+
+</html>

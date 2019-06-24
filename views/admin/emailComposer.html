@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutors">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>email composer</title>
+    <link rel="icon" href="/public/favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/public/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/manageTutors.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script><!-- load angular js 1.0.8 -->
+    <script src="https://cdn.ravenjs.com/3.24.0/raven.min.js" crossorigin="anonymous"></script>
+    <script src="/public/angular/admin/emailCore.js"></script><!-- Angular App -->
+  </head>
+
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </button>
+                <h1 class="navbar-brand">Badass Tutors</h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./purchases">PURCHASES</a>
+                    </li>
+                    <!-- <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./payroll">PAYROLL</a>
+                    </li> -->
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./subjects">SEARCH EDITOR</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item  active-nav" href="./emailer">EMAILER</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- How to Get Started -->
+    <section class="primary-section search-section text-center">
+        <div class="container top-container">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>Emailer </h1>
+                <h4>Compose and send emails to large groups of tutors.</h4>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Email Composer -->
+    <section class="primary-section table-section">
+        <div class="container">
+          <div class="row">
+            <h2 class="text-center">New Email</h2>
+            <hr>
+            <div class="col-sm-10 col-sm-offset-1">
+              <h2>Send To:</h2>
+              <select ng-model="emailForm.emailAddress" class="form-control small-field" name="">
+                <option value="1">All 'Active' Tutors</option>
+              </select>
+              <hr>
+              <h2>Subject:</h2>
+              <div class="input-group-lg">
+                <input ng-model="emailForm.subject" type="text" class="form-control " placeholder="What is the e-mail about">
+              </div>
+              <hr>
+              <h2>Message:</h2>
+              <textarea ng-model="emailForm.message" class="form-control" rows="12" placeholder="What do you want to say"></textarea>
+              <hr>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Email Composer -->
+    <section class="primary-section table-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-4 col-xs-offset-4" >
+              <h2 class="text-center">Send Message</h2>
+              <hr>
+              <p class="error-message" ng-hide="emailForm.emailAddress && emailForm.subject && emailForm.message">*Fill out All 3 fields to send message.</p>
+              <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="sendEmail()" ng-disabled="!(emailForm.emailAddress && emailForm.subject && emailForm.message)">Send Message</button>
+              <!-- <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="sendEmail()" ng-disabled="!emailAddress || !subject || !message">Send Message</button> -->
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+
+    <div class="row text-center">
+        <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+    </div>
+
+    <!-- LOADING MODAL -->
+    <div class="modal" id="loadingModal" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" ng-class="loadingClass">
+      <div class="modal-dialog loading-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center loading-modal">
+            <div class="row">
+              <br>
+              <h1>Uploading...</h1>
+              <h2>Kick-back and have a deep breath.</h2>
+              <img src="/public/images/np_hammock.png" class="img-responsive center-block" alt="">
+            </div>
+            <div class="row">
+              <div class="col-xs-12  loading-center">
+                <div class="loader center-block"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success MODAL -->
+    <div class="modal" id="loadingModal" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" ng-class="successClass">
+      <div class="modal-dialog loading-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center loading-modal">
+            <div class="row">
+              <br>
+              <h1>Success!</h1>
+              <img src="/public/images/np_check.png" class="img-responsive center-block" style="width:100px;" alt="">
+              <h2>Would you like to compose another email?</h2>
+              <br>
+              <div class="col-sm-3 col-sm-offset-3">
+                <a href="./emailer" class="btn btn-default btn-lg btn-block">YES</a>
+              </div>
+              <div class="col-sm-3">
+                <a href="./purchases" class="btn btn-info btn-lg btn-block">NO</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutorsCheckout">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Badass Tutors</title>
+    <link rel="icon" href="./public/favicon.ico">\
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/subjects.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script>
+    <script src="/public/javascripts/angular-cookies.min.js"></script>
+    <script src="/public/angular/tutorBuy.js"></script>
+  </head>
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/Book">BOOK</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- How to Get Started -->
+    <section class="primary-section text-center">
+        <div class="container top-container">
+
+          <div class="row">
+            <h1>World Languages</h1>
+            <h3 class="subjectDescription">
+              A world language is a language that is spoken internationally and is learned and spoken by a large number of people as a second language. A world language is characterized not only by the total number of speakers (native and second language speakers), but also by its geographical distribution, as well as use in international organizations and diplomatic relations. One of the most widely spoken and fastest spreading world languages today is English, which has over 980,000,000 first- and second-language users worldwide.
+            </h3>
+
+            <h3 class="subjectDescription">
+              The English word language means "tongue, speech, language" through Latin lingua, "language; tongue". The word is sometimes used to refer to codes, ciphers, and other kinds of artificially constructed communication systems such as formally defined computer languages used for computer programming. Unlike conventional human languages, a formal language in this sense is a system of signs for encoding and decoding information. This article specifically concerns the properties of natural human language as it is studied in the discipline of linguistics.
+            </h3>
+
+            <h3 class="subjectDescription">
+              As an object of linguistic study, "language" has two primary meanings: an abstract concept, and a specific linguistic system, e.g. "French". The Swiss linguist Ferdinand de Saussure, who defined the modern discipline of linguistics, first explicitly formulated the distinction using the French word langage for language as a concept, langue as a specific instance of a language system, and parole for the concrete usage of speech in a particular language.
+            </h3>
+
+            <h3 class="subjectDescription">
+              Some examples include: chinese, spanish, English, Hindi, Arabic, Portuguese, Bengali, Russian, Japanese, German, French, Greek, Latin.
+            </h3>
+
+            <h3 class="subjectDescription">
+              Culture  is the social behavior and norms found in human societies. Culture is considered a central concept in anthropology, encompassing the range of phenomena that are transmitted through social learning in human societies. Some aspects of human behavior, social practices such as culture, expressive forms such as art, music, dance, ritual, religion, and technologies such as tool usage, cooking, shelter, and clothing are said to be cultural universals, found in all human societies. The concept of material culture covers the physical expressions of culture, such as technology, architecture and art, whereas the immaterial aspects of culture such as principles of social organization (including practices of political organization and social institutions), mythology, philosophy, literature (both written and oral), and science comprise the intangible cultural heritage of a society 
+            </h3>
+
+
+
+
+
+
+          </div>
+
+          <div class="row align-items-center justify-content-center">
+              <a type="button" class="btn btn-lg btn-danger subjectButton" href="/tutors" aria-hidden="true"> Find a Tutor Now </a>
+          </div>
+        </div>
+    </section>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 moble-footer">
+          <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+        </div>
+        <div class="col-sm-6 text-right moble-footer">
+            <a href="/schools/calpoly" class="footer-link">Cal Poly</a> | <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+    <!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-104310445-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

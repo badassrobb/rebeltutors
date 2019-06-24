@@ -1,0 +1,131 @@
+pre {
+  background-color: #fdfdfd;
+  white-space: normal;
+  word-break: normal;
+  padding-left: 20px;
+}
+
+button {
+  text-transform: uppercase;
+}
+
+.result-heading {
+  padding-bottom: 50px;
+  text-decoration: underline;
+}
+
+.thin-hr {
+  margin-top:0px;
+  margin-bottom: 0px;
+}
+
+.search-section {
+  padding-bottom: 0px;
+}
+
+.in-person-results {
+  padding-bottom: 100px;
+}
+.no-padding {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+
+.alert-input {
+  color:#d84c1f;
+}
+
+.schedule {
+  white-space: pre-wrap;
+}
+
+.btn-tutor-search {
+  min-height: 70px;
+  background-color: #d84c1f;
+  color: white;
+  font-size: 180%;
+}
+
+.extra-search-btn-pad {
+  padding-bottom: 5px;
+}
+
+.search-icon {
+  max-width: 50px;
+}
+
+.panel-heading {
+  background-color: white;
+  color: black;
+  font-size: 24px;
+  padding-bottom: 0px;
+}
+
+.modal-header {
+  background-color: white;
+  color:black;
+}
+
+.modal-dialog{
+  width: 80%;
+}
+
+.modal-footer {
+  background-color: white;
+}
+
+@media (max-width:1000px) {
+  .results-section{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .panel-body {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .modal-dialog{
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .xs-top-padding{
+    padding-top: 20px;
+  }
+
+  .modal-header{
+    padding-top:0px;
+    padding-bottom:0px;
+  }
+
+  .subject-blue {
+    margin-top:5px;
+    margin-bottom:0px;
+    font-size: 110%;
+  }
+
+
+
+  .bio-div {
+    margin-bottom:0px;
+    padding-left:20px;
+  }
+
+  .indent-item {
+    padding-left:0px;
+  }
+
+}
+
+.panel {
+  /* border-color: ; */
+  border-bottom: 1px solid #939393;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+
+.online-tutor-heading {
+  background-color: #ededed;
+}

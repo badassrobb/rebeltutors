@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutorsCheckout">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>astronomy-astrophysics subject</title>
+    <link rel="icon" href="./public/favicon.ico">\
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/subjects.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script>
+    <script src="/public/javascripts/angular-cookies.min.js"></script>
+    <script src="/public/angular/tutorBuy.js"></script>
+  </head>
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/Book">BOOK</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- How to Get Started -->
+    <section class="primary-section text-center">
+        <div class="container top-container">
+
+          <div class="row">
+            <h1>Astronomy and Astrophysics</h1>
+            <h3 class="subjectDescription">Astronomy is a natural science that studies celestial objects and phenomena. It applies mathematics, physics, 
+			and chemistry, in an effort to explain the origin of those objects and phenomena and their evolution. Objects of interest include planets, 
+			moons, stars, galaxies, and comets; while the phenomena include supernova explosions, gamma ray bursts, and cosmic microwave background radiation. 
+			More generally, all astronomical phenomena that originate outside Earth's atmosphere are within the purview of astronomy. A related but distinct 
+			subject, physical cosmology, is concerned with the study of the Universe as a whole.
+            <br><br>Astrophysics is the branch of astronomy that employs the principles of physics and chemistry ""to ascertain the nature of the heavenly 
+			bodies, rather than their positions or motions in space."" Among the objects studied are the Sun, other stars, galaxies, extrasolar planets, 
+			the interstellar medium and the cosmic microwave background. Their emissions are examined across all parts of the electromagnetic spectrum, 
+			and the properties examined include luminosity, density, temperature, and chemical composition. Because astrophysics is a very broad subject, 
+			astrophysicists typically apply many disciplines of physics, including mechanics, electromagnetism, statistical mechanics, thermodynamics, 
+			quantum mechanics, relativity, nuclear and particle physics, and atomic and molecular physics.</h3>
+          </div>
+          <div class="row align-items-center justify-content-center">
+              <a type="button" class="btn btn-lg btn-danger subjectButton" href="/tutors" aria-hidden="true"> Find a Tutor Now </a>
+          </div>
+        </div>
+    </section>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 moble-footer">
+          <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+        </div>
+        <div class="col-sm-6 text-right moble-footer">
+            <a href="/schools/calpoly" class="footer-link">Cal Poly</a> | <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+    <!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-104310445-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

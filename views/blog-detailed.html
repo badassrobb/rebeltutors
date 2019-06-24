@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutors">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Badass Blog</title>
+    <link rel="icon" href="/public/favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/public/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/blogs.css">
+    <link rel="stylesheet" href="/public/stylesheets/customCheckToggle.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script><!-- load angular js 1.0.8 -->
+    <script src="/public/angular/blogsDetailed.js"></script><!-- Angular App -->
+  </head>
+
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/tutors">TUTORS</a>
+                    </li>
+                    <!--<li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+					-->
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/Book">BOOK</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item active-nav" href="/blog">BLOG</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- How to Get Started -->
+    <section class="primary-section search-section text-center">
+        <div class="container top-container">
+          <div class="row">
+            <h1>BADASS BLOG</h1>
+            <a type="button" class="btn btn-info btn-lg" name="button" href="/blog">View More Posts</a>
+            <hr>
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="panel">
+                <div class="panel-heading">
+                  <h1 class="panel-title detailed-title"><b>{{blog.post_title}}</b> </h1>
+                </div>
+                <div class="panel-body text-left">
+                  <h4 class="">{{blog.creationDate}}</h4>
+                  <h4 ng-hide="!blog.author.name"><b>By: {{blog.author.name}} <span ng-hide="!blog.author.nickname">a.k.a {{blog.author.nickname}}</b></span> </h4>
+                  <!-- <h2 ng-hide="!blog.author.name">By: {{blog.author.name}} <span ng-hide="!blog.author.nickname">a.k.a {{blog.author.nickname}}</span> </h2> -->
+                  <hr>
+                  <pre>{{ blog.post_content }}  </pre>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 moble-footer">
+          <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+        </div>
+        <div class="col-sm-6 text-right moble-footer">
+            <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use</a>
+        </div>
+      </div>
+      <!-- Schools -->
+      <div class="row ">
+        <div class="col-sm-12 text-center">
+            <a href="/schools/calpoly-pomona" class="footer-link">Cal Poly Pomona</a> |
+            <a href="/schools/calpoly" class="footer-link">Cal Poly SLO</a> |
+            <a href="/schools/CSUB" class="footer-link">CSUB</a> |
+            <a href="/schools/CSUC" class="footer-link">CSUC</a> |
+            <a href="/schools/CSUCI" class="footer-link">CSUCI</a> |
+            <a href="/schools/CSUDH" class="footer-link">CSUDH</a> |
+            <a href="/schools/CSUEB" class="footer-link">CSUEB</a> |
+            <a href="/schools/CSUFRESNO" class="footer-link">CSU FRESNO</a> |
+            <a href="/schools/CSUFULLERTON" class="footer-link">CSU FULLERTON</a> |
+            <a href="/schools/CSULA" class="footer-link">CSULA</a> |
+            <a href="/schools/CSULB" class="footer-link">CSULB</a> |
+            <a href="/schools/CSUMB" class="footer-link">CSUMB</a> |
+            <a href="/schools/CSUN" class="footer-link">CSUN</a> |
+            <a href="/schools/CSUS" class="footer-link">CSUS</a> |
+            <a href="/schools/CSUSB" class="footer-link">CSUSB</a> |
+            <a href="/schools/CSUSM" class="footer-link">CSUSM</a> |
+            <a href="/schools/HSU" class="footer-link">HSU</a> |
+            <a href="/schools/SBCC" class="footer-link">SBCC</a> |
+            <a href="/schools/SDSU" class="footer-link">SDSU</a> |
+            <a href="/schools/SSU" class="footer-link">SSU</a> |
+            <a href="/schools/STANISLAUSSTATE" class="footer-link">STANISLAUS STATE</a> |
+            <a href="/schools/UCB" class="footer-link">UCB</a> |
+            <a href="/schools/UCD" class="footer-link">UCD</a> |
+            <a href="/schools/UCI" class="footer-link">UCI</a> |
+            <a href="/schools/UCLA" class="footer-link">UCLA</a> |
+            <a href="/schools/UCM" class="footer-link">UCM</a> |
+            <a href="/schools/UCR" class="footer-link">UCR</a> |
+            <a href="/schools/UCSB" class="footer-link">UCSB</a> |
+            <a href="/schools/UCSC" class="footer-link">UCSC</a> |
+            <a href="/schools/UCSD" class="footer-link">UCSD</a> |
+            <a href="/schools/UCSF" class="footer-link">UCSF</a>
+        </div>
+      </div>
+      <!-- End Schools -->
+    </div>
+
+
+
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn btn-info pull-right" data-dismiss="modal" aria-label="Close">Close</button>
+          <h2 class="modal-title text-center" id="myModalLabel">Confirm Deletion</h2>
+        </div>
+        <div class="modal-body text-left">
+          <div class="row">
+            <h2 class="text-center">Are you sure you want to delete this purchase?</h2>
+            <br>
+            <div class="col-sm-6 col-sm-offset-3">
+              <p>Deleting this purchase only removes it from badass.com servers.</p>
+              <p>It does not void or reimburse customer of purchase.</p>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">No, Cancel</button>
+              <br>
+              <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="removePurchase(detailPurchase._id)" data-dismiss="modal">Yes, Delete FOREVER</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- * * END * * * Delete Purchase Modal -->
+
+  <!-- LOADING MODAL -->
+  <div class="modal" id="loadingModal" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" ng-class="loadingClass">
+    <div class="modal-dialog loading-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center loading-modal">
+          <div class="row">
+            <br>
+            <h1>Uploading...</h1>
+            <h2>Kick-back and have a deep breath.</h2>
+            <img src="/public/images/np_hammock.png" class="img-responsive center-block" alt="">
+          </div>
+          <div class="row">
+            <div class="col-xs-12  loading-center">
+              <div class="loader center-block"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

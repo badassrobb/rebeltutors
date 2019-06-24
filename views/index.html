@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutorsCheckout">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>front page</title>
+    <link rel="icon" href="./public/favicon.ico">
+    <!-- Google Ad Verification -->
+    <meta name="google-site-verification" content="XpM-l8_6DyRJy_IpvlXSwcBB7t0YhHTxqH56Ypm8cxI" />
+    <!-- Facebook Sharing Info -->
+    <meta property="og:url"                content="https://badasstutors.com/" />
+    <meta property="og:title"              content="Badass Tutors" />
+    <meta property="og:description"        content="Stressed? We can help." />
+    <meta property="og:image"              content="https://badasstutors.com/public/images/badass-donkey.jpg" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./public/stylesheets/style.css">
+    <link rel="stylesheet" href="./public/stylesheets/indexStyle.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script>
+    <script src="/public/javascripts/angular-cookies.min.js"></script>
+    <script src="/public/angular/tutorBuy.js"></script>
+  </head>
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item active-nav" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/Book">BOOK</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="https://blog.badasstutors.com">BLOG</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro-main">
+        <div class="intro-body">
+            <div class="container-fluid">
+              <div class="row text-center">
+                <div class="ctaContainer">
+                  <div class="ctaSplash">Stressed?<br>We can help!<br></div><div><a href="/guarantee" class=" btn cta_link">Get a Guaranteed A or B!</a></div>
+                  <br>
+                  <br>
+                  <iframe class="hidden-xs" width="560" height="315" src="https://www.youtube.com/embed/EBh-3T2J07I?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            		</div>
+              </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Buy hours and Footer -->
+    <section class="fixed" id="footer">
+      <div class="row text-center center-block buy-hours vcenter-md footer-row">
+        <div class="col-md-3">
+          <a class="buy-hours-font text-center"  href="/buy"> BUY HOURS </a>
+        </div>
+        <div class="col-md-3 footer-col-stack-padding">
+          <button type="button" class="btn btn-danger btn-lg btn-bad btn-block" ng-click="buyHours('6')">16 HOURS GUARANTEED ABC</button>
+        </div>
+        <div class="col-md-3 footer-col-stack-padding">
+          <button type="button" class="btn btn-danger btn-lg btn-bad btn-block" ng-click="buyHours('7')">24 HOURS GUARANTEED AB</button>
+        </div>
+        <div class="col-md-3 footer-col-stack-padding">
+          <a type="button" href="/buy" class="btn btn-danger btn-lg btn-bad btn-block">ALL PACKAGES</a>
+        </div>
+      </div>
+      <!-- Social Media -->
+      <div class="container green-background">
+        <div class="row social-row">
+          <div class="col-sm-12 text-center">
+            <h4 class="text-center white-font">
+              Find us on social media:
+            </h4>
+          </div>
+        </div>
+        <div class="row social-row text-center">
+          <span>
+            <a href="https://www.facebook.com/BadassTutors" target="_blank">
+              <img src="/public/images/social/fb-blue-72.png" class="social-icon" alt="">
+            </a>
+            <a href="https://www.instagram.com/badasstutors/" target="_blank">
+              <img src="/public/images/social/instagram-color-solid.png" class="social-icon" alt="">
+            </a>
+            <a href="https://www.minds.com/Badasstutors" target="_blank">
+              <img src="/public/images/social/minds-bulb.svg" class="social-icon" alt="">
+            </a>
+            <a href="http://gab.ai/badasstutors" target="_blank">
+              <img src="/public/images/social/gab-logo.svg" class="social-icon" alt="">
+            </a>
+            <a href="http://www.badassyoutube.com/" target="_blank">
+              <img src="/public/images/social/youtube_social_squircle_red.png" style="max-height: 30px;" alt="">
+            </a>
+          </span>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="container green-background">
+        <div class="row footer-row footer-copyright">
+          <div class="col-sm-6 moble-footer">
+            <p class="copyright mobile-no-padding">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+          </div>
+          <div class="col-sm-6 text-right moble-footer mobile-padding">
+              <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use </a> | <a href="/tutor/login" class="footer-link">Tutor Login</a>
+          </div>
+        </div>
+        <!-- Schools -->
+        <div class="row ">
+          <div class="col-sm-12 text-center">
+              <a href="/schools/calpoly-pomona" class="footer-link">Cal Poly Pomona</a> |
+              <a href="/schools/calpoly" class="footer-link">Cal Poly SLO</a> |
+              <a href="/schools/CSUB" class="footer-link">CSUB</a> |
+              <a href="/schools/CSUC" class="footer-link">CSUC</a> |
+              <a href="/schools/CSUCI" class="footer-link">CSUCI</a> |
+              <a href="/schools/CSUDH" class="footer-link">CSUDH</a> |
+              <a href="/schools/CSUEB" class="footer-link">CSUEB</a> |
+              <a href="/schools/CSUFRESNO" class="footer-link">CSU FRESNO</a> |
+              <a href="/schools/CSUFULLERTON" class="footer-link">CSU FULLERTON</a> |
+              <a href="/schools/CSULA" class="footer-link">CSULA</a> |
+              <a href="/schools/CSULB" class="footer-link">CSULB</a> |
+              <a href="/schools/CSUMB" class="footer-link">CSUMB</a> |
+              <a href="/schools/CSUN" class="footer-link">CSUN</a> |
+              <a href="/schools/CSUS" class="footer-link">CSUS</a> |
+              <a href="/schools/CSUSB" class="footer-link">CSUSB</a> |
+              <a href="/schools/CSUSM" class="footer-link">CSUSM</a> |
+              <a href="/schools/HSU" class="footer-link">HSU</a> |
+              <a href="/schools/SBCC" class="footer-link">SBCC</a> |
+              <a href="/schools/SDSU" class="footer-link">SDSU</a> |
+              <a href="/schools/SSU" class="footer-link">SSU</a> |
+              <a href="/schools/STANISLAUSSTATE" class="footer-link">STANISLAUS STATE</a> |
+              <a href="/schools/UCB" class="footer-link">UCB</a> |
+              <a href="/schools/UCD" class="footer-link">UCD</a> |
+              <a href="/schools/UCI" class="footer-link">UCI</a> |
+              <a href="/schools/UCLA" class="footer-link">UCLA</a> |
+              <a href="/schools/UCM" class="footer-link">UCM</a> |
+              <a href="/schools/UCR" class="footer-link">UCR</a> |
+              <a href="/schools/UCSB" class="footer-link">UCSB</a> |
+              <a href="/schools/UCSC" class="footer-link">UCSC</a> |
+              <a href="/schools/UCSD" class="footer-link">UCSD</a> |
+              <a href="/schools/UCSF" class="footer-link">UCSF</a>
+          </div>
+        </div>
+        <!-- End Schools -->
+      </div>
+    </section>
+    <!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-104310445-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

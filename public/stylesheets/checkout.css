@@ -1,0 +1,17 @@
+
+.cart-item {
+  border-bottom: 1px solid;
+}
+
+.input-group {
+  width: 100%;
+}
+
+.error-message {
+  color:red;
+  white-space: pre-wrap;
+}
+
+.extra-big-link {
+  font-size: 130%;
+}

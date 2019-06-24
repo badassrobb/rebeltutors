@@ -1,0 +1,23 @@
+.small-field {
+  max-width: 200px;
+}
+
+.green-highlight {
+  color:#4CAF50;
+}
+
+.error-message {
+  color:red;
+  white-space: pre-wrap;
+}
+
+.input-group-lg {
+  padding-bottom:40px;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}

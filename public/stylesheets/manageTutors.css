@@ -1,0 +1,97 @@
+/* Set the google autofill above the modal view */
+.pac-container {
+    z-index: 10000 !important;
+}
+
+.modal-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 40px;
+  padding-bottom: 10px;
+}
+
+.toggle-div {
+  padding: 15px;
+  /* border: 1px solid black; */
+}
+
+.toggle-row {
+  padding:15px;
+}
+
+.modal-dark {
+  background-color: white;
+  color: black;
+}
+
+.panel-heading[name="subjectHeading"] {
+  background-color: white;
+  color: black;
+}
+
+.small-field {
+  max-width: 200px;
+}
+
+.navbar-custom {
+  min-height: 65px;
+}
+
+.navbar-brand{
+  margin-top:15px;
+}
+
+.top-container {
+  padding-top: 15px;
+}
+
+.search-section {
+  padding-bottom:0px;
+}
+
+.table-section {
+  padding-top:0px;
+}
+
+.center-stuff {
+  vertical-align: middle;
+}
+
+.glyphicon-ok {
+  color: green;
+}
+
+.glyphicon-remove {
+  color: red;
+}
+
+.newbie-card {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding-top:5px;
+  padding-bottom:5px;
+  min-height: 50px;
+}
+
+.short-row {
+  padding-top:0px;
+  padding-bottom:0px;
+}
+
+.loading-modal {
+  margin-top:5px;;
+  height: 95vh;
+  width: 95vw;
+}
+
+.loading-center {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+
+.delete-modal {
+  margin-top:10px;
+  height: 80vh;
+  /* width: 95vw; */
+}

@@ -1,0 +1,34 @@
+pre {
+  font-family: "Open Sans";
+  line-height: 2.2;
+  font-size: 110%;
+  border: none;
+}
+
+.detailed-title {
+  font-size: 220%;
+}
+
+.panel-title {
+  font-size: 170%;
+  line-height: 2;
+  text-transform: capitalize;
+}
+
+.panel-footer {
+  background-color: white;
+  border: none;
+}
+
+@media (max-width:1000px) {
+  .panel-title {
+    font-size: 140%;
+    line-height: 1.5;
+    text-transform: capitalize;
+  }
+
+  .primary-section {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}

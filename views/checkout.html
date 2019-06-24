@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutorsCheckout">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>check out page 1</title>
+    <link rel="icon" href="./public/favicon.ico">
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./public/stylesheets/style.css">
+    <link rel="stylesheet" href="./public/stylesheets/checkout.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script>
+    <script src="/public/javascripts/angular-cookies.min.js"></script>
+    <!-- Masks -->
+    <script src="/public/angular/tutorCheckout.js"></script>
+
+  </head>
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/Book">BOOK</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="https://blog.badasstutors.com">BLOG</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item active-nav" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Title Area -->
+    <section class="primary-section text-center">
+        <div class="container top-container">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>Shopping Cart</h1>
+                <br>
+                <h2 ng-hide="!emptyCart">Currently no items selected for purchase</h2>
+            </div>
+          </div>
+          <div class="row cart-item" ng-repeat="item in cart">
+            <div class="col-sm-2">
+                <h4><b> {{ item.tutor }} </b></h4>
+                <p ng-hide="!item.onlineTutorSession || item.book"> online tutor session</p>
+                <p ng-hide="item.onlineTutorSession || item.book"> in person tutor session</p>
+            </div>
+            <div class="col-sm-2">
+                <!-- Subject Category Input -->
+                <div class="form-group" ng-hide="item.book">
+                  <label>Select subject:</label>
+                  <select class="form-control" ng-hide="item.tutorID" ng-options="item as item for item in subjectCategories" ng-model="item.subjectCategory">
+                  </select>
+                  <!-- Tutor Specific Categories -->
+                  <select class="form-control" ng-hide="!item.tutorID" ng-options="item as item for item in item.subjects" ng-model="item.subjectCategory">
+                  </select>
+                </div>
+            </div>
+            <div class="col-sm-2">
+              <!-- Class Input -->
+              <div class="form-group" ng-hide="item.book">
+                <label for="sel1">Class:</label>
+                <input type="text" class="form-control" name="" ng-model="item.class">
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-4">
+                <!-- Hours Input -->
+                <div class="form-group" ng-hide="item.book">
+                  <label>Select Hours:</label>
+                  <select class="form-control" ng-change="updatePricing()" ng-model="item.hourBundle">
+                    <option value="1">${{ item.rate }}/hr (1 hour) ${{ item.rate }}</option>
+                    <option value="2">${{ item.rate - (item.applyDiscount * 5) }}/hr (4 hour) ${{ (item.rate - (item.applyDiscount * 5)) * 4 }}</option>
+                    <option value="3">${{ item.rate - (item.applyDiscount * 10) }}/hr (8 hour) ${{ (item.rate - (item.applyDiscount * 10)) * 8 }}</option>
+                    <option value="4">${{ item.rate - (item.applyDiscount * 15)}}/hr (16 hour) ${{ (item.rate - (item.applyDiscount * 15)) * 16 }}</option>
+                    <option value="5">${{ item.rate - (item.applyDiscount * 20)}}/hr (24 hour) ${{ (item.rate - (item.applyDiscount * 20)) * 24 }}</option>
+                    <option value="6">${{ item.rate - (item.applyDiscount * 5)}}/hr (16 hour Guaranteed Pass) ${{ (item.rate - (item.applyDiscount * 5)) * 16 }}</option>
+                    <option value="7">${{ item.rate - (item.applyDiscount * 5)}}/hr (24 hour Guaranteed A or B) ${{ (item.rate - (item.applyDiscount * 5)) * 24 }}</option>
+                  </select>
+                </div>
+                <div class=""  ng-hide="!item.book">
+                  <h4>Price: ${{ item.price }}</h4>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-danger" ng-click="removeCartItem($index)">Remove</button>
+            </div>
+          </div>
+          <br>
+          <h2 ng-hide="emptyCart">Total: ${{ total }}</h2>
+        </div>
+    </section>
+
+    <!-- Student Info Form-->
+    <section class="primary-section text-center" ng-hide="emptyCart">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-offset-3">
+                <h1>Student Information</h1>
+                <p>Enter the student information that is to be tutored. </p>
+                <br>
+                <!-- first name INPUT -->
+                <div class="input-group input-group-lg">
+                  <h3 class="text-left">First Name:</h3>
+                  <p class="text-left error-message" ng-hide="formData.studentFirstName">Required</p>
+                  <input ng-model="formData.studentFirstName" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+                </div>
+                <!-- last name INPUT -->
+                <div class="input-group input-group-lg">
+                  <h3 class="text-left">Last Name:</h3>
+                  <p class="text-left error-message" ng-hide="formData.studentLastName">Required</p>
+                  <input ng-model="formData.studentLastName" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+                </div>
+                <!-- school INPUT -->
+                <div class="input-group input-group-lg">
+                  <h3 class="text-left">Current School or University:</h3>
+                  <p class="text-left error-message" ng-hide="formData.school">Required</p>
+                  <input ng-model="formData.school" type="text" class="form-control " placeholder="ex: Cal Poly" aria-describedby="sizing-addon1">
+                </div>
+                <!-- email INPUT -->
+                <div class="input-group input-group-lg">
+                  <h3 class="text-left">E-mail:</h3>
+                  <p class="text-left error-message" ng-hide="formData.studentEmail">Required</p>
+                  <p class="text-left">Your e-mail address will be used to send you a copy of the purchase receipt as well as our study skills assessment if you buy a guaranteed package (no .edu emails please).</p>
+                  <input ng-model="formData.studentEmail" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+                </div>
+                <!-- phone INPUT -->
+                <div class="input-group input-group-lg">
+                  <h3 class="text-left">Phone:</h3>
+                  <p class="text-left error-message" ng-hide="formData.studentPhone">Required</p>
+                  <p class="text-left">Your phone number will be used for communicating and scheduling with the tutor, most efficiently if by text message.</p>
+                  <input id="phone" ng-model="formData.studentPhone" type="text" class="form-control " placeholder="555-555-5555" aria-describedby="sizing-addon1">
+                </div>
+                <!-- address INPUT -->
+                <div class="input-group input-group-lg">
+                  <h3 class="text-left">Address:</h3>
+                  <p class="text-left error-message" ng-hide="formData.studentAddress">Required</p>
+                  <input ng-model="formData.studentAddress" type="text" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+                </div>
+                <!-- address INPUT -->
+                <div class="input-group input-group-lg">
+                  <h3 class="text-left">Student Goals:</h3>
+                  <input ng-model="formData.studentGoals" type="text" class="form-control " placeholder="I want to pass Calculus 1" aria-describedby="sizing-addon1">
+                </div>
+                <!-- Fill out fields -->
+                <div>
+                  <br>
+                  <h2 class="error-message text-center" ng-hide="formData.studentFirstName && formData.studentLastName && formData.studentEmail && formData.studentPhone && formData.studentAddress"> Fill out required fields to checkout. </h2>
+                  <br>
+                  <p class="error-message" ng-hide="formData.studentFirstName"> -Student First Name </p>
+                  <p class="error-message" ng-hide="formData.studentLastName"> -Student Last Name </p>
+                  <p class="error-message" ng-hide="formData.studentEmail"> -Student E-mail </p>
+                  <p class="error-message" ng-hide="formData.studentPhone"> -Student Phone Number </p>
+                  <p class="error-message" ng-hide="formData.studentAddress"> -Student Address </p>
+
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Payment  -->
+    <section class="primary-section"  ng-hide="emptyCart">
+
+      <!-- Policy Section -->
+
+      <div class="row text-center">
+        <div class="col-xs-12">
+          <h1>Payment</h1>
+          <p><span><input type="checkbox" ng-model="termsAccepted"> </span>  By checking here, I agree to:
+            <a target="_blank" href="/privacy-policy">The Privacy Policy</a> and
+            <a target="_blank" href="/refund-policy">The Refund Policy</a>
+          </p>
+          <p>You must agree to the terms and fill out all required forms before proceeding to payment.</p>
+          <hr>
+          <h2 class="text-center">Purchase Total: ${{ total }}</h2>
+          <!-- Paypal dropin -->
+
+        </div>
+      </div>
+
+
+
+
+      <!-- Paypal -->
+      <!-- <div class="row text-center" ng-hide="!(formData.studentFirstName && formData.studentLastName && formData.studentEmail && formData.studentPhone && formData.studentAddress && formData.school && termsAccepted)">
+        <div id="paypal-button"></div>
+      </div> -->
+
+      <!-- DEV -->
+      <!-- <button type="button" class="btn btn-danger btn-lg btn-block" name="button" ng-click="testCheckout()">TEST</button> -->
+
+      <!-- 2 Page checkout Button -->
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+          <button ng-click="page2()" type="button" class="btn btn-danger btn-lg btn-block" name="button" ng-disabled="!(formData.studentFirstName && formData.studentLastName && formData.studentEmail && formData.studentPhone && formData.studentAddress && formData.school && termsAccepted)">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 moble-footer">
+          <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+        </div>
+        <div class="col-sm-6 text-right moble-footer">
+            <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use</a>
+        </div>
+      </div>
+      <!-- Schools -->
+      <div class="row ">
+        <div class="col-sm-12 text-center">
+            <a href="/schools/calpoly-pomona" class="footer-link">Cal Poly Pomona</a> |
+            <a href="/schools/calpoly" class="footer-link">Cal Poly SLO</a> |
+            <a href="/schools/CSUB" class="footer-link">CSUB</a> |
+            <a href="/schools/CSUC" class="footer-link">CSUC</a> |
+            <a href="/schools/CSUCI" class="footer-link">CSUCI</a> |
+            <a href="/schools/CSUDH" class="footer-link">CSUDH</a> |
+            <a href="/schools/CSUEB" class="footer-link">CSUEB</a> |
+            <a href="/schools/CSUFRESNO" class="footer-link">CSU FRESNO</a> |
+            <a href="/schools/CSUFULLERTON" class="footer-link">CSU FULLERTON</a> |
+            <a href="/schools/CSULA" class="footer-link">CSULA</a> |
+            <a href="/schools/CSULB" class="footer-link">CSULB</a> |
+            <a href="/schools/CSUMB" class="footer-link">CSUMB</a> |
+            <a href="/schools/CSUN" class="footer-link">CSUN</a> |
+            <a href="/schools/CSUS" class="footer-link">CSUS</a> |
+            <a href="/schools/CSUSB" class="footer-link">CSUSB</a> |
+            <a href="/schools/CSUSM" class="footer-link">CSUSM</a> |
+            <a href="/schools/HSU" class="footer-link">HSU</a> |
+            <a href="/schools/SBCC" class="footer-link">SBCC</a> |
+            <a href="/schools/SDSU" class="footer-link">SDSU</a> |
+            <a href="/schools/SSU" class="footer-link">SSU</a> |
+            <a href="/schools/STANISLAUSSTATE" class="footer-link">STANISLAUS STATE</a> |
+            <a href="/schools/UCB" class="footer-link">UCB</a> |
+            <a href="/schools/UCD" class="footer-link">UCD</a> |
+            <a href="/schools/UCI" class="footer-link">UCI</a> |
+            <a href="/schools/UCLA" class="footer-link">UCLA</a> |
+            <a href="/schools/UCM" class="footer-link">UCM</a> |
+            <a href="/schools/UCR" class="footer-link">UCR</a> |
+            <a href="/schools/UCSB" class="footer-link">UCSB</a> |
+            <a href="/schools/UCSC" class="footer-link">UCSC</a> |
+            <a href="/schools/UCSD" class="footer-link">UCSD</a> |
+            <a href="/schools/UCSF" class="footer-link">UCSF</a>
+        </div>
+      </div>
+      <!-- End Schools -->
+    </div>
+    </script>
+    <!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-104310445-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

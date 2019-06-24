@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutorsCheckout">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Conquer Your Classes book</title>
+    <link rel="icon" href="./public/favicon.ico">\
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./public/stylesheets/style.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script>
+    <script src="/public/javascripts/angular-cookies.min.js"></script>
+    <script src="/public/angular/tutorBuy.js"></script>
+  </head>
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item active-nav" href="/Book">BOOK</a>
+                    </li>
+
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="https://blog.badasstutors.com">BLOG</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- How to Get Started -->
+    <section class="primary-section text-center">
+        <div class="container top-container">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>Secrets of the Guaranteed A or B!</h1>
+                <br>
+                <button type="button" class="btn btn-lg btn-red" ng-click="buyBook()">
+                  Buy Now
+                </button>
+            </div>
+          </div>
+          <div class="row text-left">
+            <div class="col-md-6 col-stack-padding">
+              <img class="img-responsive book-cover" src="/public/images/book-cover.jpg" alt="">
+            </div>
+            <div class="col-md-6 col-stack-padding">
+              <p>All of my study skills secrets are here in one ebook: Conquer Your Classes (Extended Version). With four assessments in all, my study skills advice has helped thousands achieve the grades they want and deserve: Study Skills Assessment (SSA), Nutritional Fitness Assessment (NFA), Learning Styles Assessment (LSA), and Home Environment Assessment (HEA). Combined with quality tutoring, there is an 85-95% chance you will get at least a B grade.</p>
+              <p>Originally called "The Grade Saver", I changed the name because I didn't want you to think that I was "saving" you. I want you to understand you are saving yourself! You are the soldier of your own good fortune. You are the conqueror of your grades; we are your guide down the right trail.</p>
+              <p>You, and only you, can save yourself from poor grades. Using my techniques as a guide, you can conquer all of your classes. Straight-A grades are achievable by just about everyone. Yes, you too!</p>
+              <br>
+              <ul>
+                <li class="list-group-item"><b>SSA:</b> Complete study skills overhaul, from taking better notes, overcoming test anxiety, weekly schedules, to schmoozing your professors! </li>
+                <li class="list-group-item"><b>NFA:</b> Nutrition and fitness advice, from eating right on a test day to incorporating exercise into the studying environment. </li>
+                <li class="list-group-item"><b>LSA:</b> Learn how you learn, 6 types of learners. Find out which are you and customize your studying. </li>
+                <li class="list-group-item"><b>HEA:</b> Learn how to set up your home or room for an ideal studying environment, or how to pick the right spot in the library!</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <h4 class="text-center">Purchase your copy of Conquer Your Classes.</h4>
+            <br>
+            <button type="button" class="btn btn-lg btn-red" ng-click="buyBook()">
+              Buy Now
+            </button>
+          </div>
+        </div>
+    </section>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 moble-footer">
+          <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+        </div>
+        <div class="col-sm-6 text-right moble-footer">
+            <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use</a> | <a href="/tutor/login" class="footer-link">Tutor Login</a>
+        </div>
+      </div>
+      <!-- Schools -->
+      <div class="row ">
+        <div class="col-sm-12 text-center">
+            <a href="/schools/calpoly-pomona" class="footer-link">Cal Poly Pomona</a> |
+            <a href="/schools/calpoly" class="footer-link">Cal Poly SLO</a> |
+            <a href="/schools/CSUB" class="footer-link">CSUB</a> |
+            <a href="/schools/CSUC" class="footer-link">CSUC</a> |
+            <a href="/schools/CSUCI" class="footer-link">CSUCI</a> |
+            <a href="/schools/CSUDH" class="footer-link">CSUDH</a> |
+            <a href="/schools/CSUEB" class="footer-link">CSUEB</a> |
+            <a href="/schools/CSUFRESNO" class="footer-link">CSU FRESNO</a> |
+            <a href="/schools/CSUFULLERTON" class="footer-link">CSU FULLERTON</a> |
+            <a href="/schools/CSULA" class="footer-link">CSULA</a> |
+            <a href="/schools/CSULB" class="footer-link">CSULB</a> |
+            <a href="/schools/CSUMB" class="footer-link">CSUMB</a> |
+            <a href="/schools/CSUN" class="footer-link">CSUN</a> |
+            <a href="/schools/CSUS" class="footer-link">CSUS</a> |
+            <a href="/schools/CSUSB" class="footer-link">CSUSB</a> |
+            <a href="/schools/CSUSM" class="footer-link">CSUSM</a> |
+            <a href="/schools/HSU" class="footer-link">HSU</a> |
+            <a href="/schools/SBCC" class="footer-link">SBCC</a> |
+            <a href="/schools/SDSU" class="footer-link">SDSU</a> |
+            <a href="/schools/SSU" class="footer-link">SSU</a> |
+            <a href="/schools/STANISLAUSSTATE" class="footer-link">STANISLAUS STATE</a> |
+            <a href="/schools/UCB" class="footer-link">UCB</a> |
+            <a href="/schools/UCD" class="footer-link">UCD</a> |
+            <a href="/schools/UCI" class="footer-link">UCI</a> |
+            <a href="/schools/UCLA" class="footer-link">UCLA</a> |
+            <a href="/schools/UCM" class="footer-link">UCM</a> |
+            <a href="/schools/UCR" class="footer-link">UCR</a> |
+            <a href="/schools/UCSB" class="footer-link">UCSB</a> |
+            <a href="/schools/UCSC" class="footer-link">UCSC</a> |
+            <a href="/schools/UCSD" class="footer-link">UCSD</a> |
+            <a href="/schools/UCSF" class="footer-link">UCSF</a>
+        </div>
+      </div>
+      <!-- End Schools -->
+    </div>
+    <!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-104310445-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

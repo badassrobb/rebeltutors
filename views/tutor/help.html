@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutors">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>help page</title>
+    <link rel="icon" href="/public/favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/public/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/help.css">
+    <link rel="stylesheet" href="/public/stylesheets/customCheckToggle.css">
+
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script><!-- load angular js 1.0.8 -->
+
+    <!-- CROPPIE JS JQUERY STUFF -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.js"></script>
+    <!-- <script type="text/javascript" src="/public/javascripts/croppieCustomAdmin.js"></script> -->
+
+    <!-- Angular App -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  </head>
+
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </button>
+                <h1 class="navbar-brand adminNav">
+                    Badass Tutors
+                </h1>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./tutoring">TUTORING</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./historical">HISTORICAL</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./profile">PROFILE</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./settings">SETTINGS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./logout">LOGOUT</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll nav-item active-nav" href="./help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true" style="font-size:110%;"></span></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <section class="primary-section search-section text-center">
+        <div class="container top-container">
+          <div class="row" ng-hide="newSignupsHide">
+            <div class="col-lg-8 col-lg-offset-2">
+              <h1>Need Help?</h1>
+            </div>
+          </div>
+
+          <!-- Password Reset -->
+          <div class="row text-left">
+            <div class="col-sm-10 col-sm-offset-1">
+
+              <h3>Feel free to call Robb if you have any questions about how we operate here at Badass Tutors.</h3>
+              <h3>You can reach him at 805.806.0305 or badasstutors2015@gmail.com </h3>
+              <br>
+              <!-- <h3>If you are having technical difficulties with the site, feel free to contact Justin (Badass Tech support) at .</h3> -->
+              <br>
+              <div class="well">
+                <h1 class="text-center">FAQ</h1>
+                <hr>
+                <br>
+                <h3> <b>Question:</b> <i>How do I log my hours and get paid?</i> </h3>
+                <br>
+                <h4 class="faq-spacing"> <b>Answer:</b> Right now, it’s a three step process. First, when you go to a session, take a student-tutor invoice. Fill it out at the end of your session, and make sure your student signs it. Then, log the hours here in your online tutor portal under the “Tutoring” tab by clicking “Log Session.” <br>Lastly, <b>send your invoice to Robb at badasstutors2015@gmail.com</b> </h4>
+                <br>
+                <br>
+                <br>
+                <hr>
+                <br>
+                <h3> <b>Question:</b> <i>Will my address, phone number, and other private information be given out online?</i> </h3>
+                <br>
+                <h4 class="faq-spacing"> <b>Answer:</b> Your residential address, last name, email, phone number, and hourly pay are all kept private! If you decide to accept a student, that student will be given your phone number and email address so you can contact each other to schedule a tutoring appointment.</h4>
+                <br>
+                <br>
+                <br>
+                <hr>
+                <br>
+                <h3> <b>Question:</b> <i>How can students search me by my location without giving out my address?</i> </h3>
+                <br>
+                <h4 class="faq-spacing"> <b>Answer:</b> When you fill out the “max travel distance” section of your profile, that distance is used to decide whether or not you will show up in a search for in person tutors by location. Here’s how it works: Let’s say your max travel distance is 15 miles. When our customers type in their address, your profile will show up if your residential address is within 15 miles (as the bird flies) of the location they type in.</h4>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!-- <h4> <b>Question:</b>  </h4>
+                <h4> <b>Answer:</b> </h4>
+                <hr> -->
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+
+    <div class="row text-center">
+        <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+    </div>
+
+
+  </body>
+
+</html>

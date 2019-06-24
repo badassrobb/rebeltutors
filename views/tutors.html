@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutorsSearch">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Choose Your Tutor</title>
+    <link rel="icon" href="./public/favicon.ico">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/public/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/tutors.css">
+    <link rel="stylesheet" href="/public/stylesheets/customCheckToggle.css">
+    <!-- SPELLS -->
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script>
+    <script src="/public/javascripts/angular-cookies.min.js"></script>
+    <!-- City Location API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNv4_E0ALuc1wUcPZLYkWSZuyfBfuu0I&libraries=places"></script>
+
+    <script src="/public/angular/tutorSearch.js"></script>
+  </head>
+  <body ng-controller="mainController">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger navbar-ham" aria-hidden="true"></span>
+                </button>
+                <p class="nav-phone">Text/Call 805-806-0305</p>
+                <h1 class="navbar-brand">
+                    Badass Tutors
+                </h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/">HOME</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item active-nav" href="/tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/buy">BUY HOURS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/reviews">REVIEWS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/Book">BOOK</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="https://blog.badasstutors.com">BLOG</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right: 5px;">
+                        <a class="page-scroll nav-item" href="/checkout">CART</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- How to Get Started -->
+    <section class="primary-section text-center search-section">
+        <div class="container top-container">
+          <div class="row no-padding">
+            <div class="col-sm-12">
+              <h1>Choose Your Tutor</h1>
+            </div>
+          </div>
+          <!-- Toggle Name and Subject Search -->
+            <div class="row">
+              <!-- Toggle Online search only -->
+              <!-- <div class="col-md-4 col-md-offset-2">
+                <label class="switch" ng-hide="nameSearch">
+                  <input type="checkbox" ng-model="onlineSearch" ng-change="toggleOnlineSearch()">
+                  <span class="slider round"></span>
+                </label>
+                <p ng-hide="nameSearch">Online Tutor Search Only</p>
+              </div> -->
+
+              <div class="col-md-4 col-md-offset-4">
+                <button type="button" class="btn btn-info" ng-click="toggleSearchType()" ng-hide="nameSearch">
+                  SEARCH BY TUTOR NAME
+                </button>
+                <button type="button" class="btn btn-info" ng-click="toggleSearchType()" ng-hide="!nameSearch">
+                  SEARCH BY SUBJECT
+                </button>
+              </div>
+
+            </div>
+            <hr class="thin-hr">
+          <div class="row row-thin align-items-center justify-content-center">
+            <div class="col-md-4 col-md-offset-2" ng-hide="nameSearch || onlineSearch">
+              <h3>
+                <img src="/public/images/np_location_E53D1C.png" class="search-icon" alt="">
+                Your Location
+              </h3>
+              <div class="input-group input-group-lg center-block input-box">
+                <input id="googlePlacesSearch" ng-class="zipRequired" autocomplete="on" type="text" ng-class="subjectRequired" class="form-control " placeholder="" aria-describedby="sizing-addon1">
+              </div>
+              <p class="alert-input" ng-hide="validAddress">*Choose a valid location from the dropdown.</p>
+            </div>
+
+            <!-- Subject Search -->
+            <div class="col-md-4" ng-hide="nameSearch" ng-class="onlineSearchClass">
+              <h3>
+                <img src="/public/images/np_book_E53D1C.png" class="search-icon" alt="">
+                Pick a Subject
+              </h3>
+              <div class="input-group input-group-lg center-block input-box">
+                <input ng-model="searchFields.subject" ng-class="subjectRequired" type="text" class="form-control input-box" placeholder="" aria-describedby="sizing-addon1" list="_subjects">
+                <datalist id="_subjects">
+                  <option ng-repeat="subjectItem in subjectCategories" ng-value="subjectItem">
+                </datalist>
+              </div>
+            </div>
+
+            <!-- Name Search -->
+            <div class="col-md-4 col-md-offset-4" ng-hide="!nameSearch">
+              <h3>
+                <img src="/public/images/np_selfie_E53D1C.png" class="search-icon" alt="">
+                Tutor Name
+              </h3>
+              <p ng-hide="!nameSearch">First name or nickname only.</p>
+              <div class="input-group input-group-lg center-block input-box">
+                <input ng-model="searchFields.name" type="text" class="form-control input-box" placeholder="" aria-describedby="sizing-addon1">
+              </div>
+            </div>
+          </div>
+
+          <div class="row align-items-center justify-content-center extra-search-btn-pad">
+            <div class="col-md-4 col-md-offset-4">
+              <!-- Subject Search Button -->
+              <button type="button" class="btn btn-lg btn-block btn-tutor-search" ng-click="searchClick()" ng-hide="nameSearch || onlineSearch">
+                Search
+              </button>
+              <!-- Name Search Button -->
+              <button type="button" class="btn btn-lg btn-block btn-tutor-search" ng-click="searchNameClick()" ng-hide="!nameSearch" ng-disabled="!searchFields.name">
+                Search
+              </button>
+              <!-- Online Search Button -->
+              <button type="button" class="btn btn-lg btn-block btn-tutor-search" ng-click="searchOnlineClick()" ng-hide="nameSearch || !onlineSearch" ng-disabled="!searchFields.subject">
+                Search
+              </button>
+            </div>
+          </div>
+          </div>
+    </section>
+
+    <!-- Loading bar -->
+    <section class="primary-section" ng-hide="hideLoadingWedge">
+      <h1 class="text-center">loading results...</h1>
+      <div class="loader center-block"></div>
+    </section>
+
+
+    <!-- In-Person Tutor Results -->
+    <section class="primary-section results-section in-person-results" ng-hide="resultsHidden || (onlineSearch && !nameSearch)">
+        <div class="container">
+
+          <h1 class="text-center result-heading"> {{tutorType}} Tutors Matched: {{searchResults.length}}</h1>
+          <div class="row text-center" ng-hide="(searchResults.length!=0)">
+              <h1> <a href="#onlineTutorResults">See online tutor results!</a> </h1>
+              <br>
+              <h1>We are always hiring!</h1>
+              <h3><a href="/apply">Apply</a> to be a tutor today.</h3>
+              <h3>Call or text us to see if we have new tutors in your area.</h3>
+              <h3>805-806-0305</h3>
+          </div>
+          <div class="row fat-bottom">
+            <div class="col-md-12">
+              <!-- iterate through results to show tutors -->
+              <div class="panel panel-no-bottom" ng-repeat="tutor in searchResults">
+                <div class="panel-heading text-center">
+                  {{ tutor.firstName }} aka {{ tutor.nickname }}
+                </div>
+                <div class="panel-body" text-left>
+                  <div class="col-sm-4 text-center">
+                    <img ng-src="{{tutor.photo}}" class="img-responsive center-block tutor-photo" alt="" data-toggle="modal" data-target="#tutorDetailModal" ng-click="updateModal($index)">
+                    <p><b>Rates:</b> ${{ tutor.rate }} - ${{ tutor.rate - 20 | number:0 }} per hour</p>
+                    <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="buyTutor($index, false)">Book Tutor</button>
+                  </div>
+                  <div class="col-sm-8">
+                    <p>{{ tutor.shortBio }}</p>
+                    <hr>
+                    <div ng-repeat="subject in tutor.subjects | filter:searchSubjectText">
+                      <p style="margin-bottom:0px;"><b>{{subject.subjectCategory}}</b></p>
+                      <pre class="bio-div schedule">{{ subject.classes }}</pre>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-info btn-lg center-block" data-toggle="modal" data-target="#tutorDetailModal" ng-click="updateModal($index)">Show More</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row fat-bottom text-center">
+            <button class="btn btn-lg btn-danger drop-shadow" type="button" name="button" ng-click="searchOnlineTutorsClick()">See Online Tutors Available To You</button>
+          </div>
+        </div>
+    </section>
+
+    <!-- Online Tutor Results -->
+    <section id="onlineTutorResults" class="primary-section results-section" ng-hide="onlineResultsHidden">
+        <div class="container">
+
+          <h1 class="text-center result-heading" ng-hide="!hideOnlineLoadingWedge"> Online Tutors Matched: {{onlineSearchResults.length}}</h1>
+          <!-- Loading bar -->
+          <div class="text-center" ng-hide="hideOnlineLoadingWedge">
+            <h1 class="text-center">loading results...</h1>
+            <hr>
+            <div class="loader center-block"></div>
+            <hr>
+          </div>
+
+          <div class="row"  ng-hide="!hideOnlineLoadingWedge">
+            <div class="col-md-12">
+              <!-- iterate through results to show tutors -->
+              <div class="panel panel-no-bottom" ng-repeat="tutor in onlineSearchResults">
+                <div class="panel-heading text-center online-tutor-heading">
+                  <i>Online Tutor:</i> {{ tutor.firstName }} aka {{ tutor.nickname }}
+                </div>
+                <div class="panel-body" text-left>
+                  <div class="col-sm-4 text-center">
+                    <img ng-src="{{tutor.photo}}" class="img-responsive center-block tutor-photo" alt="" data-toggle="modal" data-target="#tutorDetailModal" ng-click="updateModal($index)">
+                    <p><b>Rates:</b> ${{ tutor.rate }} - ${{ tutor.rate - 20 | number:0 }} per hour</p>
+                    <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="buyTutor($index, true)">Book Tutor</button>
+                  </div>
+                  <div class="col-sm-8">
+                    <p>{{ tutor.shortBio }}</p>
+                    <hr>
+                    <div ng-repeat="subject in tutor.subjects | filter:searchSubjectText">
+                      <p style="margin-bottom:0px;"><b>{{subject.subjectCategory}}</b></p>
+                      <pre class="bio-div">{{ subject.classes }}</pre>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-info btn-lg center-block" data-toggle="modal" data-target="#tutorDetailModal" ng-click="updateOnlineModal($index)">Show More</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+    <!-- We are hiring -->
+    <section class="primary-section">
+      <div class="row text-center">
+          <h1>We are always hiring!</h1>
+          <h3><a href="/apply">Apply</a> to be a tutor today.</h3>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 moble-footer">
+          <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+        </div>
+        <div class="col-sm-6 text-right moble-footer">
+            <a href="/subjects" class="footer-link">Subjects</a> | <a href="/guarantee" class="footer-link">Guarantee</a> | <a href="/contact" class="footer-link">Contact</a> | <a href="/tos" class="footer-link">Terms of Use</a> | <a href="/tutor/login" class="footer-link">Tutor Login</a>
+        </div>
+      </div>
+      <!-- Schools -->
+      <div class="row ">
+        <div class="col-sm-12 text-center">
+            <a href="/schools/calpoly-pomona" class="footer-link">Cal Poly Pomona</a> |
+            <a href="/schools/calpoly" class="footer-link">Cal Poly SLO</a> |
+            <a href="/schools/CSUB" class="footer-link">CSUB</a> |
+            <a href="/schools/CSUC" class="footer-link">CSUC</a> |
+            <a href="/schools/CSUCI" class="footer-link">CSUCI</a> |
+            <a href="/schools/CSUDH" class="footer-link">CSUDH</a> |
+            <a href="/schools/CSUEB" class="footer-link">CSUEB</a> |
+            <a href="/schools/CSUFRESNO" class="footer-link">CSU FRESNO</a> |
+            <a href="/schools/CSUFULLERTON" class="footer-link">CSU FULLERTON</a> |
+            <a href="/schools/CSULA" class="footer-link">CSULA</a> |
+            <a href="/schools/CSULB" class="footer-link">CSULB</a> |
+            <a href="/schools/CSUMB" class="footer-link">CSUMB</a> |
+            <a href="/schools/CSUN" class="footer-link">CSUN</a> |
+            <a href="/schools/CSUS" class="footer-link">CSUS</a> |
+            <a href="/schools/CSUSB" class="footer-link">CSUSB</a> |
+            <a href="/schools/CSUSM" class="footer-link">CSUSM</a> |
+            <a href="/schools/HSU" class="footer-link">HSU</a> |
+            <a href="/schools/SBCC" class="footer-link">SBCC</a> |
+            <a href="/schools/SDSU" class="footer-link">SDSU</a> |
+            <a href="/schools/SSU" class="footer-link">SSU</a> |
+            <a href="/schools/STANISLAUSSTATE" class="footer-link">STANISLAUS STATE</a> |
+            <a href="/schools/UCB" class="footer-link">UCB</a> |
+            <a href="/schools/UCD" class="footer-link">UCD</a> |
+            <a href="/schools/UCI" class="footer-link">UCI</a> |
+            <a href="/schools/UCLA" class="footer-link">UCLA</a> |
+            <a href="/schools/UCM" class="footer-link">UCM</a> |
+            <a href="/schools/UCR" class="footer-link">UCR</a> |
+            <a href="/schools/UCSB" class="footer-link">UCSB</a> |
+            <a href="/schools/UCSC" class="footer-link">UCSC</a> |
+            <a href="/schools/UCSD" class="footer-link">UCSD</a> |
+            <a href="/schools/UCSF" class="footer-link">UCSF</a>
+        </div>
+      </div>
+      <!-- End Schools -->
+    </div>
+
+    <div class="modal fade" id="tutorDetailModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal-dark no-padding">
+            <button type="button" class="btn btn-default btn-lg pull-right" data-dismiss="modal">X</button>
+            <h1 class="text-center">{{ tutorDetails.nickname }}</h1>
+          </div>
+          <div class="modal-body" data-dismiss="modal">
+            <img ng-src="{{tutorDetails.photo}}" class="img-responsive center-block tutor-detail-photo" alt="">
+            <div class="row">
+              <div class="col-md-12">
+                <p class="text-center">Tutoring Rate: <span class="rate-pricing"> ${{ tutorDetails.rate }} - ${{ tutorDetails.rate - 20 | number:0 }} per hour</span></p>
+                <pre class="bio-div schedule">{{ tutorDetails.bio }}</pre>
+                <iframe class="center-block" ng-hide="!tutorDetails.profileVideo" width="560" height="315" src={{tutorVideoURL}} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <h3>Education</h3>
+                <p class="indent-item bio-div">{{ tutorDetails.education }}</p>
+                <h3>Classes</h3>
+                <div ng-repeat="tutorSubject in tutorDetails.subjects" class="indent-item">
+                <h4 class="subject-blue">{{tutorSubject.subjectCategory}}</h4>
+                <pre class="bio-div">{{ tutorSubject.classes }}</pre>
+                </div>
+                <h3>Schedule</h3>
+                <pre class="indent-item bio-div schedule">{{ tutorDetails.schedule }}</pre>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer modal-dark no-padding">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-104310445-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/public/javascripts/bootstrap.min.js"></script>
+  </body>
+</html>

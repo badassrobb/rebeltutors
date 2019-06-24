@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="badassTutors">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Purchase</title>
+    <link rel="icon" href="/public/favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/public/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/manageTutors.css">
+    <link rel="stylesheet" href="/public/stylesheets/customCheckToggle.css">
+    <link rel="stylesheet" href="/public/stylesheets/loggedHours.css">
+    <link rel="stylesheet" href="/public/stylesheets/purchaseModal.css">
+    <!-- SPELLS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <script src="/public/javascripts/jquery.min.js"></script><!-- load jquery -->
+    <script src="/public/javascripts/angular.min.js"></script><!-- load angular js 1.0.8 -->
+    <script src="/public/angular/admin/addPurchasesCore.js"></script><!-- Angular App -->
+  </head>
+
+  <body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class style="color:#fff;"="fa fa-bars"></i>
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </button>
+                <h1 class="navbar-brand">Badass Tutors</h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./tutors">TUTORS</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./purchases">PURCHASES</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./subjects">SEARCH EDITOR</a>
+                    </li>
+                    <li style="padding-left:5px; padding-right:5px;">
+                        <a class="page-scroll nav-item" href="./emailer">EMAILER</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- How to Get Started -->
+    <section class="primary-section search-section text-center">
+        <div class="container top-container">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>Add Custom Purchase</h1>
+                <hr>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- New Purchases Table -->
+    <section class="primary-section table-section">
+        <div class="container">
+          <!-- STUDENT Information -->
+          <div class="row text-center">
+            <div class="col-lg-6 col-lg-offset-3 text-left">
+              <h2>Student Information</h2>
+              <hr>
+              <h4>First Name</h4>
+              <div class="input-group-lg fat-bottom">
+                <input ng-model="newPurchase.formData.firstName" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+              </div>
+
+              <h4>Last Name</h4>
+              <div class="input-group-lg fat-bottom">
+                <input ng-model="newPurchase.formData.lastName" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+              </div>
+
+              <h4>E-mail</h4>
+              <i>used for notifications on logged hours</i>
+              <div class="input-group-lg fat-bottom">
+                <input ng-model="newPurchase.formData.email" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+              </div>
+
+              <h4>Phone Number</h4>
+              <div class="input-group-lg fat-bottom">
+                <input ng-model="newPurchase.formData.phone" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+              </div>
+
+              <h4>School</h4>
+              <div class="input-group-lg fat-bottom">
+                <input ng-model="newPurchase.formData.school" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+              </div>
+
+              <h4>Goals</h4>
+              <div class="input-group-lg fat-bottom">
+                <input ng-model="newPurchase.formData.goals" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+              </div>
+            </div>
+          </div>
+
+          <!-- Subject Information -->
+          <div class="row text-center fat-bottom">
+            <div class="col-lg-6 col-lg-offset-3 text-left">
+              <h2>Subject Information</h2>
+              <hr>
+
+              <h4>Subject Cateogry</h4>
+              <!-- <div class="input-group-lg fat-bottom">
+                <input ng-model="newPurchase.cart[0].subjectCategory" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+              </div> -->
+              <div class="input-group input-group-lg center-block input-box">
+                <input ng-model="newPurchase.cart[0].subjectCategory" type="text" class="form-control input-box" placeholder="" aria-describedby="sizing-addon1" list="_subjects">
+                <datalist id="_subjects">
+                  <option ng-repeat="subjectItem in subjectCategories" ng-value="subjectItem">
+                </datalist>
+              </div>
+
+              <h4>Class</h4>
+              <div class="input-group-lg fat-bottom">
+                <input ng-model="newPurchase.cart[0].class" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+              </div>
+
+              <h4>Hours</h4>
+              <div class="fat-bottom">
+                <select class="form-control left-block" ng-options="item as item for item in hourOptions" ng-model="newPurchase.cart[0].hours" ng-change="hoursUpdated()" style="max-width:150px;">
+                </select>
+              </div>
+
+              <h4>Hourly Rate Charged to Student</h4>
+              <i>Use whole dollars only.</i>
+              <div class="input-group-lg fat-bottom">
+                <input ng-model="newPurchase.cart[0].hourlyRate" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon1" ng-change="updateRate()" style="max-width:150px;">
+              </div>
+              <h3>Total Package Value: <b ng-hide="!newPurchase.cart[0].hourlyRate">${{ (newPurchase.cart[0].hours * newPurchase.cart[0].hourlyRate) }}</b> </h3>
+
+
+              <hr>
+            </div>
+          </div>
+
+
+          <!-- Tutor Information -->
+          <div class="row text-center fat-bottom">
+            <h2>Assigned Tutors: <span class="badge tutor-badge">{{newPurchase.cart[0].assignedTutors.length}}</span></h2>
+            <br>
+          </div>
+          <div class="row text-center fat-bottom">
+            <div class="col-md-6 col-md-offset-3">
+              <select class="form-control" ng-options="item as item.firstName +' '+ item.lastName +' ('+ item.nickname +')' for item in tutorList" ng-model="tutorSelected" ng-change="tutorSelectUpdated()">
+              </select>
+              <br>
+              <button type="button" class="btn btn-success btn-lg" name="button" ng-click="addTutor()">Add Tutor</button>
+            </div>
+          </div>
+          <div class="row fat-bottom text-center">
+            <h2 ng-hide="(newPurchase.cart[0].hours == newPurchase.cart[0].hoursAssigned)"><b class="error-message">{{ newPurchase.cart[0].hoursAssigned }}</b> of <b class="success-message"> {{ newPurchase.cart[0].hours }} </b>Hours Assigned </h2>
+            <h2 ng-hide="!(newPurchase.cart[0].hours == newPurchase.cart[0].hoursAssigned)"><b class="success-message">{{ newPurchase.cart[0].hoursAssigned }}</b> of <b class="success-message"> {{ newPurchase.cart[0].hours }} </b>Hours Assigned </h2>
+          </div>
+
+          <div class="row text-center" ng-repeat="assignedTutor in newPurchase.cart[0].assignedTutors">
+
+
+            <div class="col-lg-6 col-lg-offset-3 text-left well">
+              <h3> <b> {{ assignedTutor.firstName }}  {{ assignedTutor.lastName }} </b> </h3>
+              <h4><b>Nickname:</b> {{ assignedTutor.nickname}}</h4>
+              <h4><b>Phone:</b> {{ assignedTutor.contact.phone }}</h4>
+              <h4><b>E-mail:</b> {{ assignedTutor.contact.email }}</h4>
+              <h4><b>Assigned hours:</b> {{ assignedTutor.assignedHours }} </h4>
+              <select class="form-control" ng-options="item as item for item in assignHourOptions" ng-model="newPurchase.cart[0].assignedTutors[$index].assignedHours" ng-change="hourAssignmentUpdate($index)" style="max-width:200px;">
+              </select>
+              <button type="button" class="btn btn-warning pull-right" name="button" ng-click="removeTutor($index)">REMOVE TUTOR</button>
+            </div>
+          </div>
+          <!-- End assigned tutor repeat -->
+
+
+          <!-- Payment Information -->
+          <div class="row fat-bottom text-center">
+            <div class="col-lg-6 col-lg-offset-3 text-left">
+              <h2>Payment Information</h2>
+              <hr>
+
+              <h4>Payment Notes</h4>
+              <i>Include any electronic transaction numbers or cash/check details</i>
+              <div class="input-group-lg fat-bottom">
+                <input ng-model="newPurchase.purchaseNote" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+              </div>
+
+            </div>
+          </div>
+          <hr>
+          <div class="row fat-bottom text-center">
+            <h1>Submit the form once all input fields are filled.</h1>
+            <br>
+            <h4 class="error-message">{{submitMessage}}</h4>
+          </div>
+
+          <div class="row fat-bottom text-center">
+            <button type="button" class="btn btn-danger btn-lg drop-shadow" name="button" ng-click="submit()">Complete Custom Purchase</button>
+          </div>
+
+          <div class="row fat-bottom text-center">
+            <a class="btn btn-default btn-lg" href="./purchases">Cancel</a>
+          </div>
+
+        </div>
+    </section>
+
+    <div class="row text-center">
+        <p class="copyright">&copy 2018 Badass Tutors. All Rights Reserved.</p>
+    </div>
+
+
+
+  <!-- LOADING MODAL -->
+  <div class="modal" id="loadingModal" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" ng-class="loadingClass">
+    <div class="modal-dialog loading-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center loading-modal">
+          <div class="row">
+            <br>
+            <h1>Uploading...</h1>
+            <h2>Kick-back and have a deep breath.</h2>
+            <img src="/public/images/np_hammock.png" class="img-responsive center-block" alt="">
+          </div>
+          <div class="row">
+            <div class="col-xs-12  loading-center">
+              <div class="loader center-block"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
