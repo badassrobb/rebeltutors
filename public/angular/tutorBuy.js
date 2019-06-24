@@ -79,17 +79,17 @@ function mainController($scope, $window, $http, $cookies, $cookieStore){
       if (item.hourBundle == "1") {
         $scope.total += item.rate;
       } else if (item.hourBundle == "2") {
-        $scope.total += (item.rate - 10) * 4;
+        $scope.total += (item.rate - 15) * 4;
       } else if (item.hourBundle == "3") {
-        $scope.total += (item.rate - 15) * 8;
+        $scope.total += (item.rate - 20) * 8;
       } else if (item.hourBundle == "4") {
-        $scope.total += (item.rate - 20) * 16;
+        $scope.total += (item.rate - 25) * 16;
       } else if (item.hourBundle == "5") {
-        $scope.total += (item.rate - 25) * 24;
+        $scope.total += (item.rate - 30) * 24;
       } else if (item.hourBundle == "6") {
-        $scope.total += (item.rate - 15) * 16;
+        $scope.total += (item.rate - 25) * 16;
       } else if (item.hourBundle == "7") {
-        $scope.total += (item.rate - 15) * 24;
+        $scope.total += (item.rate - 25) * 24;
       }
     });
     // Set Cookie of purhcase
