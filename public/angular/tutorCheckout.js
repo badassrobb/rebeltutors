@@ -98,17 +98,17 @@ function mainController($scope, $window, $http, $cookies, $cookieStore){
         if (item.hourBundle == "1") {
           $scope.total += item.rate;
         } else if (item.hourBundle == "2") {
-          $scope.total += (item.rate - (item.applyDiscount * 5) ) * 4;
+          $scope.total += (item.rate - (item.applyDiscount * 10) ) * 4;
         } else if (item.hourBundle == "3") {
-          $scope.total += (item.rate - (item.applyDiscount * 10) ) * 8;
+          $scope.total += (item.rate - (item.applyDiscount * 15) ) * 8;
         } else if (item.hourBundle == "4") {
-          $scope.total += (item.rate - (item.applyDiscount * 15) ) * 16;
+          $scope.total += (item.rate - (item.applyDiscount * 20) ) * 16;
         } else if (item.hourBundle == "5") {
-          $scope.total += (item.rate - (item.applyDiscount * 20) ) * 24;
+          $scope.total += (item.rate - (item.applyDiscount * 25) ) * 24;
         } else if (item.hourBundle == "6") {
-          $scope.total += (item.rate - (item.applyDiscount * 5) ) * 16;
+          $scope.total += (item.rate - (item.applyDiscount * 15) ) * 16;
         } else if (item.hourBundle == "7") {
-          $scope.total += (item.rate - (item.applyDiscount * 5) ) * 24;
+          $scope.total += (item.rate - (item.applyDiscount * 15) ) * 24;
         }
       }
 
