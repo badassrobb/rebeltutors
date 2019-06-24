@@ -50,7 +50,7 @@ function mainController($scope, $window, $http, $cookies, $cookieStore){
       hourBundle: hourPackage,
       subjectCategory: "",
       class: "",
-      rate: 65
+      rate: 75
     };
     // Push purchase to scope
     $scope.cart.push(cartItem);
