@@ -30,13 +30,13 @@
 /* Color Variables  */
 :root {
   --ba_green:  #a5340e;
-  --ba_orange: #137256;
+  --ba_orange: #2c7ff4;
   --ba_green_cards: #a3301b;
   --ba_teal_bright: #f44a2c;
   --ba_teal_dark: #a3301b;
   --ba_original_green: #a5340e;
-  --ba_original_orange: #137256;
-  --ba_original_orange_hover: #1fc694;
+  --ba_original_orange: #2c7ff4;
+  --ba_original_orange_hover: #89f0f9;
   --ba_original_copyright_yellow: #FCF1DE;
 
 }
