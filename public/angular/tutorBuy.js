@@ -86,10 +86,7 @@ function mainController($scope, $window, $http, $cookies, $cookieStore){
         $scope.total += (item.rate - 20) * 16;
       } else if (item.hourBundle == "5") {
         $scope.total += (item.rate - 25) * 24;
-      } else if (item.hourBundle == "6") {
-        $scope.total += (item.rate - 10) * 16;
-      } else if (item.hourBundle == "7") {
-        $scope.total += (item.rate - 10) * 24;
+    
       }
     });
     // Set Cookie of purhcase
