@@ -111,9 +111,7 @@
                     <option value="3">${{ item.rate - (item.applyDiscount * 15) }}/hr (8 hour) ${{ (item.rate - (item.applyDiscount * 15)) * 8 }}</option>
                     <option value="4">${{ item.rate - (item.applyDiscount * 20)}}/hr (16 hour) ${{ (item.rate - (item.applyDiscount * 20)) * 16 }}</option>
                     <option value="5">${{ item.rate - (item.applyDiscount * 25)}}/hr (24 hour) ${{ (item.rate - (item.applyDiscount * 25)) * 24 }}</option>
-                    <option value="6">${{ item.rate - (item.applyDiscount * 10)}}/hr (16 hour Guaranteed Pass) ${{ (item.rate - (item.applyDiscount * 10)) * 16 }}</option>
-                    <option value="7">${{ item.rate - (item.applyDiscount * 10)}}/hr (24 hour Guaranteed A or B) ${{ (item.rate - (item.applyDiscount * 10)) * 24 }}</option>
-                  </select>
+					</select>
                 </div>
                 <div class=""  ng-hide="!item.book">
                   <h4>Price: ${{ item.price }}</h4>
